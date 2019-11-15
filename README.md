@@ -1,3 +1,15 @@
+Edit from the author: 
+
+At next is generated readme by react. 
+This is project that I'm using for learning and practice. Feel free to use. 
+
+Who is have comments : 
+yimprogramming@gmail.com
+
+Lingar 
+
+*******************************************************************************
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
