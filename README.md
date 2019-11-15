@@ -1,6 +1,6 @@
 Edit from the author: 
 
-At next is generated readme by react. 
+The following text is generated readme by react. 
 This is project that I'm using for learning and practice. Feel free to use. 
 
 Who is have comments : 
