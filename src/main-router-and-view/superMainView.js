@@ -1,17 +1,18 @@
 //import react, MainView
 import React from "react";
-import {MainView} from './mainView.js';
-import {MainView2} from './mainView2.js';
+import {MainView} from '../locationApp/mainView.js';
+import {MainView2} from '../locationApp/mainView2.js';
 import {GoogleMapsReactStudying} from '../explanations/GoogleMapsReactStudying';
 import  MapContainer from '../explanations/GoogleMapsReactStudying';
 import {FinalSummary} from '../explanations/FinalSummary';
 import {LittleAppExample} from '../explanations/LittleItemsApp'
 import LearningExample from '../explanations/LearningExample'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {RouterExplanation, TestTemp1} from './router1.js';
+import {RouterExplanation, TestTemp1} from '../locationApp/router1.js';
 import {testMe as testRouting, ShowWeekDayByRoute} from '../generalApp/components1/routingComponents/ShowWeekDay.js'
 import {FormForGetMonthDayWeekDay } from '../generalApp/components1/ui-comps-1/components1.js'
 import{ Main } from '../tech500-exercise/components/main.js'
+import {ErrorHandlingMain} from "../new-work-on/error-handling";
 
 
 
@@ -56,6 +57,9 @@ const AppRouter = () => (
             <Link to="/explain3/">managing state in parents, Like items, and how to tell parent things from child explanatons</Link>
           </li>
           <li>
+            <Link to="/error-handling">Error Handling in React</Link>
+          </li>
+          <li>
             <Link to="/explain4/">Learning example</Link>
           </li>
 
@@ -98,6 +102,8 @@ const AppRouter = () => (
       />
       <Route path="/formExample" component={FormForGetMonthDayWeekDay} />
       <Route path="/TECH500" component={Main} />
+      <Route path="/error-handling" component={ErrorHandlingMain} />
+
 
 
 

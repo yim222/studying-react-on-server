@@ -8,7 +8,7 @@ import {StudyingReactPart1 } from './studyingExamples/view/part1.js'
 import {MainView} from './locationApp/mainView.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {ReactRoute1} from './locationApp/solvingProblems.js'
-import {SuperMainView} from './locationApp/superMainView.js';
+import {SuperMainView} from './main-router-and-view/superMainView.js';
 import {Main as TECH500} from './tech500-exercise/components/main.js'
 
 //import './studyingExamples/componentsStudying1.js'
