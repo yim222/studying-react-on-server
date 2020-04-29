@@ -83,7 +83,7 @@ export function ErrorHandlingMain(props){
             <p>So what's the difference ?  </p>
 
             <h3>static getDerivedStateFromError(error)</h3>
-            <p>U cant set state from this, U don't get the error info,
+            <p>the set state is the returned value it's happen before component did catch , U don't get the error info,
             see here https://reactjs.org/docs/react-component.html#static-getderivedstatefromerror,
             "Note
 
