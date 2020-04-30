@@ -111,6 +111,22 @@ export function ErrorHandlingMain(props){
             <p>In general those the major things. Render - handling recommended from getDerived,
             log and side effects handling - recommended from component did catch </p>
 
+            <p>Sometimes at development it's hide it with the error sometimes not. Didn't figured it out and it's and how to run
+                at production at all
+            are subjects to other discussion
+             <br/>
+             In short way : u need to build  like explained here:
+                It’s work like charm (U need to serve it from the library like u do npm start) .
+                https://stackoverflow.com/a/49209041/9727918
+                But don’t recognize the proxy – right- proxies won’t work on production
+                https://stackoverflow.com/a/52881317/9727918
+                For further learning :
+                https://medium.com/@samratshaw/test-react-production-build-locally-434907be9e49
+                https://create-react-app.dev/docs/deployment/ - official
+
+
+            </p>
+
 
 
             <p>Common mistakes : </p>
