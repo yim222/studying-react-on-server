@@ -157,6 +157,12 @@ export function ErrorHandlingMain(props){
                 </GeneralErrorHandling>
             </div>
 
+            <div>
+                See that official for new behavior on default errors
+                https://reactjs.org/docs/error-boundaries.html#new-behavior-for-uncaught-errors
+
+            </div>
+
 
             <h2>Common mistakes : </h2>
             <ul>
