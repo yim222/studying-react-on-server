@@ -120,6 +120,8 @@ export function ErrorHandlingMain(props){
                 <li>U are wrapping  whole list, instead of wrapping each element (inside the loop/map)</li>
                 <li>Define the handling inside the problematic component, instead of do it from parent (parent is the wrapping component,
                 not what inside render, not extending (which anyway not recommended at react) not other thing - so keep it in mind) . </li>
+                <li>It's work but hidden by the overlays ... see here. .. to run in production see here .... </li>
+
 
             </ul>
 
