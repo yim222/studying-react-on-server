@@ -249,7 +249,7 @@ If u won’t define / as exact any other route will go to there....(maybe it's u
 
   </div>
   }
-}
+}//End of the class
 
 //End of router
 export const TestTemp1 = ({match})=>{
