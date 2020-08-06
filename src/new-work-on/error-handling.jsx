@@ -131,13 +131,14 @@ export function ErrorHandlingMain(props){
 
             </p>
 
-            <h2>Handling event errors </h2>
-            <p>https://reactjs.org/docs/error-boundaries.html#how-about-event-handlers
+            <h2>Handling events handlers errors (Event Handlers)</h2>
+            <p> from https://reactjs.org/docs/error-boundaries.html#how-about-event-handlers :
                 <br/>
                 Error boundaries do not catch errors inside event handlers.
 
                 React doesn’t need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don’t happen during rendering. So if they throw, React still knows what to display on the screen.
-
+<br/>
+U need to use the regular try/catch for that. 
 
             </p>
             <div>
@@ -217,7 +218,11 @@ class ContainerWithoutHandle extends React.Component{
         let elements = this.props.arr.map((e,index)=>{
             return( <div >
 
-                <GeneralErrorHandling><Element data={{name: 'generated-by-list'}} arr={e} key={index.toString()}/></GeneralErrorHandling>
+                <GeneralErrorHandling>
+
+                    <Element data={{name: 'generated-by-list'}} arr={e} key={index.toString()}/>
+
+                </GeneralErrorHandling>
             </div>)
         });
 
