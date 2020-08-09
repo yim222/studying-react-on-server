@@ -13,6 +13,7 @@ import {testMe as testRouting, ShowWeekDayByRoute} from '../generalApp/component
 import {FormForGetMonthDayWeekDay } from '../generalApp/components1/ui-comps-1/components1.js'
 import{ Main } from '../tech500-exercise/components/main.js'
 import {ErrorHandlingMain} from "../new-work-on/error-handling";
+import {ReactHooksMain} from "../new-work-on/react-hooks/ReactHooksMain";
 
 
 
@@ -80,6 +81,9 @@ const AppRouter = () => (
             <Link to="/formExample">The form should work - form example </Link>
           </li>
           <li>
+            <Link to="/react-hooks">React Hooks</Link>
+          </li>
+          <li>
             <Link to="/TECH500">TECH500</Link>
           </li>
         </ul>
@@ -103,6 +107,8 @@ const AppRouter = () => (
       <Route path="/formExample" component={FormForGetMonthDayWeekDay} />
       <Route path="/TECH500" component={Main} />
       <Route path="/error-handling" component={ErrorHandlingMain} />
+      <Route path="/react-hooks" component={ReactHooksMain} />
+
 
 
 
