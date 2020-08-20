@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {ClassicTitleCounter} from "../classic-comps/Comps1";
+import {ClassicTitleCounter, MainClassicsContainer} from "../classic-comps/Comps1";
 
 
 export class DraftHooks extends React.Component{
@@ -54,6 +54,8 @@ export class DraftHooks extends React.Component{
                     <li>useEffect - Use like componentDid Mount and Updated - from the doc:<br/>
                     </li>
                 </ul>
+
+                <MainClassicsContainer/>
             </div>
         )
     }
