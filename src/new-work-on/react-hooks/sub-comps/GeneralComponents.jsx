@@ -174,9 +174,13 @@ export function DemonstrateUseEffect(props){
 function Parent1(props){
     // console.log("Parent funct comp")
     const [childId, setChildId] = useState(1);
+    const [child2Id, setChild2Id] = useState(0);
+
     const [showChild1, setShowChild1] = useState(true);
     let [counter1, setCounter1] =useState(0);
     let  counter2 = 0;
+
+    let ids =[1,2,3,3,4,5,6,6,7];
 
     //For running this logic only once - we pass second argumnet of empty array.
     useEffect(()=>{
@@ -192,6 +196,19 @@ function Parent1(props){
                 false
             );
         },10000);
+
+        let counter1 = 0;
+        //set interval for array index
+        let invl2 = setInterval(()=>{
+            setChild2Id(
+                ids[counter1]
+
+            );
+            counter1++;
+            if(counter1 >= ids.length){
+                clearInterval(invl2);
+            }
+        }, 3000);
 
     },[]);
 
@@ -214,6 +231,8 @@ function Parent1(props){
             <h3>Parent1 </h3>
             <p>useState id = {childId}</p>
             { showChild1 && <Child1 id = {childId}/>}
+            <p>If U want to see about how to compare to previous, uncomment here the child2, that demonstrate that. </p>
+            {/*<Child2 id = {child2Id}/>*/}
         </div>
     )
 }
@@ -246,6 +265,47 @@ function Child1(props){
     return(
         <div>
             <h5>Child 1 -hooks </h5>
+            <p>Id = {props.id}</p>
+            {/*<button onClick={this.test}>Test</button>*/}
+        </div>
+    )
+}
+
+
+
+function Child2(props){
+    console.log("Chile 2 render - id = " + props.id);
+    const [id, setId] = useState(props.id);
+    function unsubscribe (id){
+        console.log('unsubscribing from id ' + id);
+    }
+
+    function subscribe (id){
+        console.log('subscribing to id ' + id);
+        setId(id);
+    }
+    useEffect(()=>{
+        console.log("child 2 mount/updated - useEffect - run only if previous prop doesnt' equal to the new = . ", props.id);
+        subscribe(props.id);
+        return(
+            ()=>{
+                console.log("child 2 unmount - useEffect(previos) = " , props.id);
+                unsubscribe(props.id);
+
+            }
+        )
+
+    }, [props.id]);
+    useEffect(()=>{
+        return(()=>{
+            console.log("Un mount child only once ")
+        });
+    },[]);
+    return(
+        <div>
+            <h5>Child 2 -hooks - comparing the changed values </h5>
+            <p>U need to put the props value (not the state ) for checking this. </p>
+            <p>If you want to compare </p>
             <p>Id = {props.id}</p>
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
