@@ -9,6 +9,7 @@ export function GeneralCompsHooks(){
             <DemonstrateUseEffect/>
             <SimpleSquareHooks2/>
             <Parent1/>
+            <BreakHooksRules/>
         </div>
     )
 }
@@ -327,3 +328,51 @@ function Child2(props){
         </div>
     )
 }
+
+function BreakHooksRules(){
+    //don't call hooks inside loops, condition or nested functions
+
+    //nested function
+    // function nested1(){
+    //     useEffect(()=>{
+    //             console.log("Calling hooks inside nested function");
+
+    //         //do something
+    //         //result:  React Hook "useEffect" is called in function "nested1" which is neither a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+    //     })
+    // }
+
+    //loops
+    // for(let i = 0 ; i <10 ; i++){
+    //     console.log("Calling hooks inside loop");
+    //    const [state1, setState1] = useState('dd');
+    //     // }
+    //result: React Hook "useState" may be executed more than once. Possibly because it is called in a loop. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+    //conditions:
+    let yes = true;
+    // if(yes){
+    //     const [state1, setState1] = useState('dd');
+    // }
+    //result : React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render
+
+    // Instead, always use Hooks at the top level of your React function.
+    const [state2, setState2] = useState('dd');
+
+    //✅ Call Hooks from React function components.
+    //✅ Call Hooks from custom Hooks (we’ll learn about them on the next page).
+
+    return(
+        <div>
+            <h3>See here how to break hooks rules (uncooment)</h3>
+            <p>Call hooks only from the top level of function component - <br/>
+                By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.</p>
+        </div>
+    )
+}
+
+// //dont call hooks from regular JS functions:
+// function regularJS(){
+//     const [state2, setState2] = useState('dd');
+//     //result:  React Hook "useState" is called in function "regularJS" which is neither a React function component or a custom React Hook function
+// }
