@@ -259,7 +259,8 @@ function Child1(props){
     });
     useEffect(()=>{
         return(()=>{
-            console.log("Un mount child only once ")
+            console.log("Un mount child only once \n see how the id is with its initial values = " , props.id)
+
         });
     },[]);
     return(
@@ -274,7 +275,14 @@ function Child1(props){
 
 
 function Child2(props){
-    console.log("Chile 2 render - id = " + props.id);
+
+    const [state1, setState1] = useState('initial values.');
+    useEffect(()=>{
+        // console.log("Child2 - each change ");
+        console.log("Chile 2 render - id = " + props.id);
+
+
+    })
     const [id, setId] = useState(props.id);
     function unsubscribe (id){
         console.log('unsubscribing from id ' + id);
@@ -287,6 +295,7 @@ function Child2(props){
     useEffect(()=>{
         console.log("child 2 mount/updated - useEffect - run only if previous prop doesnt' equal to the new = . ", props.id);
         subscribe(props.id);
+        console.log("Other state - " , state1);
         return(
             ()=>{
                 console.log("child 2 unmount - useEffect(previos) = " , props.id);
@@ -297,8 +306,13 @@ function Child2(props){
 
     }, [props.id]);
     useEffect(()=>{
+        setTimeout(()=>{
+            setState1('change');
+            console.log('state1-changed ');
+        }, 4500);
         return(()=>{
-            console.log("Un mount child only once ")
+
+            console.log("Un mount child only once id = " , props.id)
         });
     },[]);
     return(
@@ -307,6 +321,8 @@ function Child2(props){
             <p>U need to put the props value (not the state ) for checking this. </p>
             <p>If you want to compare </p>
             <p>Id = {props.id}</p>
+            <p>Other state = {state1}</p>
+            <p>Didnt' get the note here, but the [] is generates the initial value</p>
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
     )
