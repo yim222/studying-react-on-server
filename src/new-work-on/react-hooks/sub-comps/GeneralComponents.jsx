@@ -246,7 +246,7 @@ function Child1(props){
     function unsubscribe (id){
         console.log('unsubscribing from id ' + id);
     }
-    const [desc, setDesc] = useEvenOdd(props.id);
+    const desc = useEvenOdd(props.id);
 
     function subscribe (id){
         console.log('subscribing to id ' + id);
