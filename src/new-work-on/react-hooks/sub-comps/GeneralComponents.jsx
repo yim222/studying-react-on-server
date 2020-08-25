@@ -246,7 +246,7 @@ function Child1(props){
     function unsubscribe (id){
         console.log('unsubscribing from id ' + id);
     }
-    // const [desc, setDesc] = useEvenOdd(props.id);
+    const [desc, setDesc] = useEvenOdd(props.id);
 
     function subscribe (id){
         console.log('subscribing to id ' + id);
@@ -273,7 +273,7 @@ function Child1(props){
         <div>
             <h5>Child 1 -hooks </h5>
             <p>Id = {props.id}</p>
-            {/*<p>Custom hook - Number is {desc}</p>*/}
+            <p>Custom hook - Number is {desc}</p>
 
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
