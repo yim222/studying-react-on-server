@@ -15,8 +15,10 @@ export function CustomHooks2(){
 
 export function useRandomGenerator(){
     const [number, setNumber] = useState(0);
-    useEffect(generateRandom,[]);
-    let generateRandom=()=>{
+    useEffect(()=>{
+        generateRandom();
+    },[]);
+    function generateRandom(){
         setInterval(()=>{
             let rndm = Math.floor(Math.random() * Math.floor(100));
             setNumber(rndm);
@@ -30,7 +32,10 @@ export function useRandomGenerator(){
 }
 
 export function ByInnerLogic(){
-    const [number] = useRandomGenerator();
+    // const [number, setNumber] = useRandomGenerator();
+    const number = useRandomGenerator();
+
+    // const [number, setNumber] = useState(0);
 
     return(
         <div>
