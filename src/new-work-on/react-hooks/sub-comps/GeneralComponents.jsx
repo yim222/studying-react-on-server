@@ -232,8 +232,10 @@ function Parent1(props){
             <h3>Parent1 </h3>
             <p>useState id = {childId}</p>
             { showChild1 && <Child1 id = {childId}/>}
+            <EvenOrOdd num = {childId}/>
             <p>If U want to see about how to compare to previous, uncomment here the child2, that demonstrate that. </p>
-            {/*<Child2 id = {child2Id}/>*/}
+            <Child2 id = {child2Id}/>
+            <EvenOrOdd num = {child2Id}/>
         </div>
     )
 }
@@ -242,6 +244,7 @@ function Child1(props){
     function unsubscribe (id){
         console.log('unsubscribing from id ' + id);
     }
+    // const [desc, setDesc] = useEvenOdd(props.id);
 
     function subscribe (id){
         console.log('subscribing to id ' + id);
@@ -268,6 +271,8 @@ function Child1(props){
         <div>
             <h5>Child 1 -hooks </h5>
             <p>Id = {props.id}</p>
+            {/*<p>Custom hook - Number is {desc}</p>*/}
+
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
     )
@@ -278,6 +283,8 @@ function Child1(props){
 function Child2(props){
 
     const [state1, setState1] = useState('initial values.');
+    // const [desc, setDesc] = useEvenOdd(props.id);
+
     useEffect(()=>{
         // console.log("Child2 - each change ");
         console.log("Chile 2 render - id = " + props.id);
@@ -322,6 +329,7 @@ function Child2(props){
             <p>U need to put the props value (not the state ) for checking this. </p>
             <p>If you want to compare </p>
             <p>Id = {props.id}</p>
+            {/*<p>Custom hook - Number is {desc}</p>*/}
             <p>Other state = {state1}</p>
             <p>Didnt' get the note here, but the [] is generates the initial value</p>
             {/*<button onClick={this.test}>Test</button>*/}
@@ -367,6 +375,7 @@ function BreakHooksRules(){
             <h3>See here how to break hooks rules (uncooment)</h3>
             <p>Call hooks only from the top level of function component - <br/>
                 By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.</p>
+            <p>Link - https://reactjs.org/docs/hooks-rules.html</p>
         </div>
     )
 }
@@ -376,3 +385,52 @@ function BreakHooksRules(){
 //     const [state2, setState2] = useState('dd');
 //     //result:  React Hook "useState" is called in function "regularJS" which is neither a React function component or a custom React Hook function
 // }
+
+function CustomHooks(){
+    return(
+        <div>
+            <h3>Learning about custom hooks and how with that to share logic (=functionality) between components</h3>
+            <h3>See here How I 'll use the new hook below - (even/odd) in both child1 and child2 </h3>
+        </div>
+    )
+}
+
+function useEvenOdd(num) {
+
+    // const [desc, setDesc] = useState('num');
+    // useEffect(()=>{
+    //     if(num % 2 === 0){
+    //         setDesc('Even');
+    //     }
+    //     else{
+    //         setDesc('Odd');
+    //     }
+    // })
+    //
+    // if (desc ==null) {
+    //     return 'Loading...';
+    // }
+    // // return (num % 2 === 0) ? '2sdasd' : '1ddsds';
+
+    return (
+        <span>ddd</span>
+    )
+}
+
+// Let's try first to create regular logic, and pass it to the parent id's provided.
+//THen try to insert it inside the child by custom hook.
+
+function EvenOrOdd(props){
+    const [desc, setDesc] = useState(null);
+    useEffect(()=>{
+        props.num % 2 === 0 ? setDesc('Even'): setDesc('Odd');
+    });
+    if(desc == null){
+        return(
+            'loading'
+        )
+    }
+    return (
+        <span>Number {props.num} is {desc}</span>
+    )
+}
