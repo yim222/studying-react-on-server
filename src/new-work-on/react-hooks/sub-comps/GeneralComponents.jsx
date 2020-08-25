@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
+import {CustomHooks2} from "./CustomHooks";
 
 
 export function GeneralCompsHooks(){
@@ -10,6 +11,7 @@ export function GeneralCompsHooks(){
             <SimpleSquareHooks2/>
             <Parent1/>
             <BreakHooksRules/>
+            <CustomHooks2/>
         </div>
     )
 }
@@ -431,6 +433,6 @@ function EvenOrOdd(props){
         )
     }
     return (
-        <span>Number {props.num} is {desc}</span>
+       desc
     )
 }
