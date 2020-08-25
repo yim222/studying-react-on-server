@@ -184,6 +184,23 @@ function Parent1(props){
     let  counter2 = 0;
 
     let ids =[1,2,3,3,4,5,6,6,7];
+    function doSomething(){
+        console.log("Doing nothing");
+        setInterval(()=>{
+            console.log("DO nothing on interval ... ");
+
+        }, 3000);
+
+    }
+    let doSomething2=()=>{
+        console.log("Doing nothing");
+        setInterval(()=>{
+            console.log("DO nothing on interval ... ");
+
+        }, 3000);
+
+    }
+    useEffect(doSomething2,[]);
 
     //For running this logic only once - we pass second argumnet of empty array.
     useEffect(()=>{

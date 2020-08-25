@@ -15,9 +15,11 @@ export function CustomHooks2(){
 
 export function useRandomGenerator(){
     const [number, setNumber] = useState(0);
-    useEffect(()=>{
-        generateRandom();
-    },[]);
+    // useEffect(()=>{
+    //     generateRandom();
+    // },[]);
+
+    useEffect(generateRandom,[]);
     function generateRandom(){
         setInterval(()=>{
             let rndm = Math.floor(Math.random() * Math.floor(100));
