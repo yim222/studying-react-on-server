@@ -424,24 +424,22 @@ function CustomHooks(){
 
 function useEvenOdd(num) {
 
-    // const [desc, setDesc] = useState('num');
-    // useEffect(()=>{
-    //     if(num % 2 === 0){
-    //         setDesc('Even');
-    //     }
-    //     else{
-    //         setDesc('Odd');
-    //     }
-    // })
-    //
-    // if (desc ==null) {
-    //     return 'Loading...';
-    // }
-    // // return (num % 2 === 0) ? '2sdasd' : '1ddsds';
+    const [desc, setDesc] = useState('num');
+    useEffect(()=>{
+        if(num % 2 === 0){
+            setDesc('Even');
+        }
+        else{
+            setDesc('Odd');
+        }
+    });
 
-    return (
-        <span>ddd</span>
-    )
+    if (desc ==null) {
+        return 'Loading...';
+    }
+    // return (num % 2 === 0) ? '2sdasd' : '1ddsds';
+
+    return desc;
 }
 
 // Let's try first to create regular logic, and pass it to the parent id's provided.
