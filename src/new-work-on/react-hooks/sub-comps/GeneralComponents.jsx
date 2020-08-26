@@ -223,7 +223,7 @@ function Parent1(props){
             setShowChild1(
                 false
             );
-        },10000);
+        },30000);
 
         let counter1 = 0;
         //set interval for array index
@@ -272,6 +272,10 @@ function Child1(props){
         console.log('unsubscribing from id ' + id);
     }
     const desc = useEvenOdd(props.id);
+    const   [innerNumber, setInnerNumber] = useState(props.id);
+    const [multiple3, setMultiple3] = useState(0);
+    const multipl3Desc = useEvenOdd(multiple3);
+    const regJsDesc = jsEvenOdd(innerNumber);
 
     function subscribe (id){
         console.log('subscribing to id ' + id);
@@ -289,6 +293,10 @@ function Child1(props){
 
     });
     useEffect(()=>{
+        setInnerNumber(props.id);
+        setMultiple3(innerNumber * 3);
+    });
+    useEffect(()=>{
         return(()=>{
             console.log("Un mount child only once \n see how the id is with its initial values = " , props.id)
 
@@ -299,6 +307,10 @@ function Child1(props){
             <h5>Child 1 -hooks </h5>
             <p>Id = {props.id}</p>
             <p>Custom hook - Number is {desc}</p>
+            <p>VS regular js  - Number is {regJsDesc} - seems it works the same.</p>
+
+            <p>Custom hooks use inner information</p>
+            <p>Multiple 3 = {multiple3}// description = {multipl3Desc} </p>
 
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
@@ -458,4 +470,19 @@ function EvenOrOdd(props){
     return (
        desc
     );
+}
+
+function jsEvenOdd(num) {
+
+    let desc = "";
+    if(num % 2 === 0){
+        desc = 'Even';
+    }
+    else{
+        desc = 'Odd';
+    }
+
+    // return (num % 2 === 0) ? '2sdasd' : '1ddsds';
+
+    return desc;
 }

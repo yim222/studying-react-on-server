@@ -9,6 +9,7 @@ export function CustomHooks2(){
             <ByInnerLogic/>
 
             <p>2- Hook that Do it from inside by using the custom hook</p>
+            <p>This problem solve the need to get some state from inner component, without the need to get if from the parent props. </p>
         </div>
     )
 };
