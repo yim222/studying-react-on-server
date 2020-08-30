@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
-import {CustomHooks2} from "./CustomHooks";
+import React, {useState, useEffect, useLayoutEffect, useContext} from 'react';
+import {CustomHooks2, useRandomGenerator} from "./CustomHooks";
 
 
 export function GeneralCompsHooks(){
@@ -12,6 +12,9 @@ export function GeneralCompsHooks(){
             <Parent1/>
             <BreakHooksRules/>
             <CustomHooks2/>
+            <ExUseContext/>
+            <AdditionalHooks/>
+
         </div>
     )
 }
@@ -263,6 +266,7 @@ function Parent1(props){
             <p>If U want to see about how to compare to previous, uncomment here the child2, that demonstrate that. </p>
             <Child2 id = {child2Id}/>
             <EvenOrOdd num = {child2Id}/>
+            <Child3/>
         </div>
     )
 }
@@ -276,6 +280,11 @@ function Child1(props){
     const [multiple3, setMultiple3] = useState(0);
     const multipl3Desc = useEvenOdd(multiple3);
     const regJsDesc = jsEvenOdd(innerNumber);
+    const  [someNum,  setSomeNum] = useState(0);
+    const [obj1, setObj1] = useState({
+        a: 'a value',
+        b: 'b value'
+    })
 
     function subscribe (id){
         console.log('subscribing to id ' + id);
@@ -302,6 +311,28 @@ function Child1(props){
 
         });
     },[]);
+
+    function showPrevState(prev) {
+        //by pass it to some set state u can use the previous (your question)
+        console.log("showPrevState")
+        setSomeNum(prev+1);
+        console.log("prev = " , prev, "current = ", someNum);
+
+
+    }
+    function notMerge() {
+        let obj = {b: 'b new Value'};
+        setObj1(obj);
+    }
+
+    function merge() {
+        let obj = {b: 'b new Value'};
+        setObj1(prevState => {
+            // Object.assign would also work
+            return {...prevState, ...obj};
+        });
+    }
+
     return(
         <div>
             <h5>Child 1 -hooks </h5>
@@ -311,6 +342,29 @@ function Child1(props){
 
             <p>Custom hooks use inner information</p>
             <p>Multiple 3 = {multiple3}// description = {multipl3Desc} </p>
+
+            <p>Some num = {someNum}</p>
+            <button
+            onClick={()=>{
+                setSomeNum(showPrevState);
+            }}
+            >Click and change some num an show the previous </button>
+            <button
+                onClick={()=>{
+                    setSomeNum(5);
+                }}
+            >won't make rerender because it's the same value </button>
+
+            <p>U can merge values to object by using object spread syntax(...val)</p>
+            <p>Object = a:{obj1.a} | b :{ obj1.b}</p>
+            <button onClick={()=>{
+                notMerge();
+            }} >Not merge values</button>
+            <button
+                onClick={()=>{
+                    merge();
+                }}
+            >Merge values</button>
 
             {/*<button onClick={this.test}>Test</button>*/}
         </div>
@@ -485,4 +539,149 @@ function jsEvenOdd(num) {
     // return (num % 2 === 0) ? '2sdasd' : '1ddsds';
 
     return desc;
+}
+
+function Child3(){
+    // const [num, setNum] = useState(0);
+    const num = useRandomGenerator();
+    const byHook = useEvenOdd(num);
+    const byJs = jsEvenOdd(num);
+    // useLayoutEffect(()=>{
+    //     console.log("Child 3 - starting interval")
+    //     setInterval(()=>{
+    //         console.log("adding 1 child 3 - current = ", num)
+    //         let number = num+1;
+    //         setNum(number);
+    //         console.log("adding 1 child 3 - after = ", num)
+    //
+    //     },5000);
+    // }, []);
+
+    return(
+        <div>
+            <h3>Child 3 </h3>
+            <p>Number = {num}</p>
+            <p>Odd/Even bu custom = {byHook}</p>
+            <p>Odd/Even by js = {byJs}</p>
+            <p>It's don't work because in setInterval it's making new render and
+            don't wait. U need to useLayoutMaybe.</p>
+        </div>
+    )
+}
+
+function ExUseContext(){
+    return(
+        <div>
+            <h3>Explanation of useContext hook</h3>
+            <ThemeContext.Provider value={themes.dark}>
+                <Toolbar />
+            </ThemeContext.Provider>
+            <p>It's linked to context using which is needed thing in React. </p>
+            <p>https://reactjs.org/docs/context.html</p>
+            <p>If you’re familiar with the context API before Hooks, useContext(MyContext) is equivalent to static contextType = MyContext in a class, or to MyContext.Consumer>.
+
+                useContext(MyContext) only lets you read the context and subscribe to its changes. You still need a MyContext.Provider above in the tree to provide the value for this context.</p>
+        </div>
+    )
+}
+
+const themes = {
+    light: {
+        foreground: "#000000",
+        background: "#eeeeee"
+    },
+    dark: {
+        foreground: "#ffffff",
+        background: "#222222"
+    }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App333() {
+    return (
+        <ThemeContext.Provider value={themes.dark}>
+            <Toolbar />
+        </ThemeContext.Provider>
+    );
+}
+
+function Toolbar(props) {
+    return (
+        <div>
+            <ThemedButton />
+        </div>
+    );
+}
+
+function ThemedButton() {
+    const theme = useContext(ThemeContext);
+    return (
+        <button style={{ background: theme.background, color: theme.foreground }}>
+            I am styled by theme context!
+        </button>
+    );
+}
+
+function AdditionalHooks(){
+    return(
+        <div>
+            <h3>Additional Hooks</h3>
+            <p>
+                The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don’t stress about learning them up front.
+
+
+            </p>
+            <ExUseMemo/>
+
+        </div>
+    )
+}
+
+function ExUseMemo(){
+    const [result, makeCalc] = useState(0);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+
+    //functions
+    const changeXY = (ev) =>{
+        console.warn("change XY, ev= ", ev);
+        [ev.target.name] = ev.target.value;
+        switch(ev.target.name){
+            case "x":
+                setX(ev.target.value)
+                break;
+            default:
+                console.log("Nothing happen");
+        }
+    }
+
+    return(
+        <div>
+            <h3>Example of using useMemo</h3>
+            <p>It's a hook that provide the technique of memoization, that save the old result at
+            the cache, and if the values was already calculated it brings them from the memo (save the need to calculate again expensive calculation</p>
+            <p>TODO :
+                1-Make an input that show the result of mutlipe the two's inputs.
+                2-Make it's work by nClick.
+                3-Make the calculation will  be like expensive calc (make counting until 10).
+                4- save.
+                5- Do another state that and implement useMemo for saving the returning calc.
+                6- Make sure it's working By running testing. It's should to work also on histories calc, not only the last, I assume. Check it. </p>
+            <div>
+                X = <input name ="x" onChange={(ev)=>changeXY(ev)} value={x}/><br/>
+                Y = <input/><br/>
+                <button>X * Y </button>
+                <p className='little-comment'><a href= 'https://stackoverflow.com/questions/55757761/handle-an-input-with-react-hooks'>Seems</a> it's problematic to simplify the using of the name property like U R doing at classic classes  </p>
+
+            </div>
+            <p>The result : {result}</p>
+            <p>test x = {x}</p>
+        </div>
+    );
+
+
+
+
+
 }

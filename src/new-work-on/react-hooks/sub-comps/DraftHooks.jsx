@@ -72,12 +72,15 @@ export class DraftHooks extends React.Component{
 
      return (
          <div>
+             <h3>Example 1 </h3>
              <p>You clicked {count} times !!!!</p>
              <button onClick={() => setCount(count + 1)}>
                  Click me
              </button>
+             <p>See how in the render of the new count the below prop doesn't changed to initial </p>
              <p>My hook = {propName}</p>
              <button onClick={changeValue}>Change value</button>
+
          </div>
      );
  }

@@ -111,3 +111,10 @@ li{
   width:50%;
 
 }
+.little-comment::before{
+  content: '*';
+}
+.little-comment{
+  font-size: 15px;
+  color: blue;
+}
