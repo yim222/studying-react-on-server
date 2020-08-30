@@ -643,19 +643,19 @@ function ExUseMemo(){
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
 
-    //functions
-    const changeXY = (ev) =>{
-        ev.persist();
-        console.warn("change XY, ev= ", ev);
-        [ev.target.name] = ev.target.value;
-        switch(ev.target.name){
-            case "x":
-                setX(ev.target.value)
-                break;
-            default:
-                console.log("Nothing happen");
-        }
-    }
+    // //functions
+    // const changeXY = (ev) =>{
+    //     ev.persist();
+    //     console.warn("change XY, ev= ", ev);
+    //     [ev.target.name] = ev.target.value;
+    //     switch(ev.target.name){
+    //         case "x":
+    //             setX(ev.target.value)
+    //             break;
+    //         default:
+    //             console.log("Nothing happen");
+    //     }
+    // }
 
     return(
         <div>
@@ -670,7 +670,9 @@ function ExUseMemo(){
                 5- Do another state that and implement useMemo for saving the returning calc.
                 6- Make sure it's working By running testing. It's should to work also on histories calc, not only the last, I assume. Check it. </p>
             <div>
-                X = <input name ="x" onChange={(ev)=>changeXY(ev)} value={x}/><br/>
+                X = <input name ="x"
+                           onChange={(ev)=>setX(ev.target.value)}
+                           value={x}/><br/>
                 Y = <input/><br/>
                 <button>X * Y </button>
                 <p className='little-comment'><a href= 'https://stackoverflow.com/questions/55757761/handle-an-input-with-react-hooks'>Seems</a> it's problematic to simplify the using of the name property like U R doing at classic classes  </p>
