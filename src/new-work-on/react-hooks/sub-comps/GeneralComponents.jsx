@@ -645,6 +645,7 @@ function ExUseMemo(){
 
     //functions
     const changeXY = (ev) =>{
+        ev.persist();
         console.warn("change XY, ev= ", ev);
         [ev.target.name] = ev.target.value;
         switch(ev.target.name){
