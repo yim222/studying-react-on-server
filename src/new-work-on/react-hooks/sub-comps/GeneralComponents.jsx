@@ -657,6 +657,15 @@ function ExUseMemo(){
     //     }
     // }
 
+    function calc(){
+        console.log("Calcs? ");
+        let result = x * y;
+        for (let i =0; i< 11 ; i++){
+            console.log("LOng calc, " , i);
+        }
+        makeCalc(result);
+    }
+
     return(
         <div>
             <h3>Example of using useMemo</h3>
@@ -671,10 +680,13 @@ function ExUseMemo(){
                 6- Make sure it's working By running testing. It's should to work also on histories calc, not only the last, I assume. Check it. </p>
             <div>
                 X = <input name ="x"
+                           type = "number"
                            onChange={(ev)=>setX(ev.target.value)}
                            value={x}/><br/>
-                Y = <input/><br/>
-                <button>X * Y </button>
+                Y = <input   type = "number"
+                             onChange={(ev)=>setY(ev.target.value)}
+                             value={y}/><br/>
+                <button onClick = {calc}>X * Y </button>
                 <p className='little-comment'><a href= 'https://stackoverflow.com/questions/55757761/handle-an-input-with-react-hooks'>Seems</a> it's problematic to simplify the using of the name property like U R doing at classic classes  </p>
 
             </div>
