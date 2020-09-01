@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect, useContext} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useContext, useMemo} from 'react';
 import {CustomHooks2, useRandomGenerator} from "./CustomHooks";
 
 
@@ -642,7 +642,14 @@ function ExUseMemo(){
     const [result, makeCalc] = useState(0);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
+    const [c, setC] = useState(0);
 
+    const result2 = useMemo(()=>{
+        return calc2()
+    },[x,y]);
+    let result3 = 0;
+    const [result4, setRes4] = useState(0);
+    // useEffect(()=> setRes4(calc2()))
     // //functions
     // const changeXY = (ev) =>{
     //     ev.persist();
@@ -666,6 +673,21 @@ function ExUseMemo(){
         makeCalc(result);
     }
 
+    function calc2(){
+        console.log("Calcs2? ", x , 'x', y);
+        let result = x * y;
+        for (let i =0; i< 11 ; i++){
+            console.log("LOng calc, " , i);
+        }
+        return result;
+    }
+
+    function calc3(){
+        console.log("Calcs3? ");
+       // makeCalc(result2);
+        result3 = result2;
+    }
+
     return(
         <div>
             <h3>Example of using useMemo</h3>
@@ -686,11 +708,28 @@ function ExUseMemo(){
                 Y = <input   type = "number"
                              onChange={(ev)=>setY(ev.target.value)}
                              value={y}/><br/>
+                C = <input name ="c"
+                           type = "number"
+                           onChange={(ev)=>setC(ev.target.value)}
+                           value={c}/><br/>
                 <button onClick = {calc}>X * Y </button>
                 <p className='little-comment'><a href= 'https://stackoverflow.com/questions/55757761/handle-an-input-with-react-hooks'>Seems</a> it's problematic to simplify the using of the name property like U R doing at classic classes  </p>
-
+                <button onClick = {calc3}>X * Y  With useMemo</button>
             </div>
             <p>The result : {result}</p>
+            <p>The result2 : {result2}</p>
+
+            <p>The result3 : {result3}</p>
+            <p>The result4: {result4}</p>
+
+            <p>Conclusion:</p>
+            <p>It’s make the rerender won’t happen if the parameter didn’t changed. In useEffect it does it.
+                Here he is asking about the different
+                https://stackoverflow.com/q/56028913/9727918
+                It’s the same behavior but useMemo is more efficient.
+            </p>
+
+
             <p>test x = {x}</p>
         </div>
     );
@@ -699,4 +738,13 @@ function ExUseMemo(){
 
 
 
+}
+
+function longCalc(a,b){
+    // console.log("Calcs2? ");
+    // let result = x * y;
+    // for (let i =0; i< 11 ; i++){
+    //     console.log("LOng calc, " , i);
+    // }
+    // return result;
 }
