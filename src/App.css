@@ -71,13 +71,9 @@
 }
 
 .explain{
-
   background-color: white;
   border: 2px solid yellow;
-
   /*color: purple;*/
-
-
 }
 .explain *:nth-child(odd){
   color:purple;
