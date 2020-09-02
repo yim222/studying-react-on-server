@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useLayoutEffect, useContext, useMemo} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useContext, useMemo
+,useRef, useDebugValue} from 'react';
 import {CustomHooks2, useRandomGenerator} from "./CustomHooks";
 
 
@@ -633,6 +634,10 @@ function AdditionalHooks(){
 
             </p>
             <ExUseMemo/>
+            <ExUseRef/>
+            <h4>useLayoutEffect - </h4><p>Is for updates before rendering,
+            it's <a href = "https://reactjs.org/docs/hooks-reference.html#uselayouteffect">
+                 important </a> to know it </p>
 
         </div>
     )
@@ -737,6 +742,44 @@ function ExUseMemo(){
 
 
 
+
+}
+
+function ExUseRef() {
+    const inputEl = useRef(null);
+    const [counter, count] = useState(0)
+    const onButtonClick = () => {
+        // `current` points to the mounted text input element
+        inputEl.current.focus();
+
+
+    };
+    useEffect(()=>{
+        console.log("inputEl = ", inputEl)
+        console.log(inputEl.current.value)
+    });
+    useDebugValue(counter === 5 ? "FIVE" : "OTHER");
+    useDebugValue("Debug val");
+
+
+
+    return(
+        <div>
+            <h3>useRef Example </h3>
+            <p>It's let U refer the element with HTML functionality. </p>
+            <input ref={inputEl} type="text" />
+            <button onClick={onButtonClick}>Focus the input</button>
+            <p
+            onClick = {()=>{
+                count(counter + 1)
+            }}>Click - {counter}</p>
+
+            <button onClick={() => {count(counter + 1)}}>
+                Click me {counter}
+            </button>
+
+        </div>
+    )
 
 }
 
