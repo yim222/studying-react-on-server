@@ -71,13 +71,9 @@
 }
 
 .explain{
-
   background-color: white;
-
-{/*color: purple;*/}
   border: 2px solid yellow;
-
-
+  /*color: purple;*/
 }
 .explain *:nth-child(odd){
   color:purple;
@@ -110,4 +106,11 @@ li{
   border: solid red 2px;
   width:50%;
 
+}
+.little-comment::before{
+  content: '*';
+}
+.little-comment{
+  font-size: 15px;
+  color: blue;
 }

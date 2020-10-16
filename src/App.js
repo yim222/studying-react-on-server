@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {ReactRoute1} from './locationApp/solvingProblems.js'
 import {SuperMainView} from './main-router-and-view/superMainView.js';
 import {Main as TECH500} from './tech500-exercise/components/main.js'
+ import {Example1} from "./new-work-on/react-hooks/sub-comps/DraftHooks";
 
 //import './studyingExamples/componentsStudying1.js'
 
@@ -19,6 +20,7 @@ class App extends Component {
       <div className="App">
         <div>
           <header className="App-header">
+              {/*<Example1/>*/}
           <div className = "location-view">
           <SuperMainView/>
               {/*<ReactRoute1/>*/}
