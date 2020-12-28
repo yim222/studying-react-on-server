@@ -27,8 +27,24 @@ export class RenderPropsPoc extends React.Component {
 
                      **/}
                 </p>
-                <p>products: </p>
-                <ProductsData/>
+                <p>products classic: </p>
+                <ProductsClassic/>
+                <p>Products data with render props</p>
+
+
+
+                    <ProductsData render={myData => (
+                        <div>
+                            <ProductsList data={myData} />
+                            <MostExpensive data ={myData}/>
+
+                        </div>
+
+                    )}/>
+
+
+
+
 
             </div>
 
@@ -69,11 +85,13 @@ class ProductsData extends React.Component {
         this.dataToArray();
         return (
             <div>
-                products:
-                <p>book = {this.state.book}</p>
-                <p>bread = {this.state.bread}</p>
-                <ProductsList data={this.data}/>
-                <MostExpensive data = {this.data}/>
+                {/*products:*/}
+                {/*<p>book = {this.state.book}</p>*/}
+                {/*<p>bread = {this.state.bread}</p>*/}
+                {/*<ProductsList data={this.data}/>*/}
+                {/*<MostExpensive data = {this.data}/>*/}
+
+                {this.props.render(this.data)}
 
             </div>
         );
@@ -144,4 +162,65 @@ function MostExpensive(props) {
         </div>
     )
 
+}
+class ProductsClassic extends React.Component {
+
+    constructor() {
+        super();
+        this.interval = null;
+        this.seconds = 3;
+        this.state = {
+            book: 0,
+            bread: 0,
+            shoes: 0,
+            candle: 0
+        }
+        this.data = []
+    }
+
+    componentDidMount() {
+        this.startTimer();
+    }
+
+    dataToArray() {
+        this.data = [];
+        for (const [key, value] of Object.entries(this.state)) {
+            console.log(`${key}: ${value}`);
+            this.data.push({name: key, price: value});
+        }
+
+    }
+
+    render() {
+        this.dataToArray();
+        return (
+            <div>
+                products:
+                <p>book = {this.state.book}</p>
+                <p>bread = {this.state.bread}</p>
+                <ProductsList data={this.data}/>
+                <MostExpensive data = {this.data}/>
+
+            </div>
+        );
+    }
+
+    startTimer() {
+        this.interval = setInterval(() => {
+                this.setState({
+                    book: this.getRandomInt(100),
+                    bread: this.getRandomInt(100),
+                    shoes: this.getRandomInt(100),
+                    candle: this.getRandomInt(100)
+                });
+                console.log("interval");
+            }
+
+
+            , this.seconds * 3000);
+    }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 }
