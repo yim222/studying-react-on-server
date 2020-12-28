@@ -27,8 +27,9 @@ export class RenderPropsPoc extends React.Component {
 
                      **/}
                 </p>
-                <p>You can compare to previous bracnh how it's much easier to seperate to new other components by renders props
-                vs the classic . </p>
+                <p>You can compare to previous bracnh how it's much easier to seperate to new other components by
+                    renders props
+                    vs the classic . </p>
                 <p>products classic: </p>
                 <ProductsClassic/>
                 <ProductsClassic2/>
@@ -45,8 +46,16 @@ export class RenderPropsPoc extends React.Component {
                         <MostExpensive data={myData}/>
 
                     </div>)}/>
+                <h3>two components with render props : </h3>
+                <ProductsData
+                render = {(data )=>
+                    <div>
+                        <ProductsList data = {data }/>
+                        <MostExpensive data ={data}/>
+                    </div>
 
 
+                }/>
 
             </div>
 
