@@ -1,4 +1,5 @@
 import React from 'react';
+import './render-props-poc.css';
 
 export class RenderPropsPoc extends React.Component {
 
@@ -48,24 +49,38 @@ class ProductsData extends React.Component {
             shoes: 0,
             candle: 0
         }
+        this.data = []
     }
+
     componentDidMount() {
         this.startTimer();
     }
 
+    dataToArray() {
+        this.data = [];
+        for (const [key, value] of Object.entries(this.state)) {
+            console.log(`${key}: ${value}`);
+            this.data.push({name: key, price: value});
+        }
+
+    }
+
     render() {
+        this.dataToArray();
         return (
             <div>
                 products:
                 <p>book = {this.state.book}</p>
                 <p>bread = {this.state.bread}</p>
+                <ProductsList data={this.data}/>
+                <MostExpensive data = {this.data}/>
 
             </div>
         );
     }
 
     startTimer() {
-        this.interval = setInterval(()=>{
+        this.interval = setInterval(() => {
                 this.setState({
                     book: this.getRandomInt(100),
                     bread: this.getRandomInt(100),
@@ -73,16 +88,60 @@ class ProductsData extends React.Component {
                     candle: this.getRandomInt(100)
                 });
                 console.log("interval");
-        }
+            }
 
 
-
-        ,this.seconds * 1000);
+            , this.seconds * 3000);
     }
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }
+}
 
+export class ProductsList extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+    render() {
+        let view = this.props.data.map((item, idx) => {
+            return (<div key={idx}><span>{item.name}</span> <span>{item.price}</span></div>);
+
+        });
+
+        return (<div className="products-list">
+
+            <h1>Products list</h1>
+            {view}
+
+
+        </div>);
+    }
+
+}
+
+function MostExpensive(props) {
+
+    function max() {
+        // let numbers = props.data.map(item=>item.price);
+        //         // console.log("numebrs = " + numbers);
+        let expensiveItem = {item: "", price: 0};
+        for (let i of props.data){
+            console.log("i = ", i);
+            if (i.price > expensiveItem.price){
+                expensiveItem = i ;
+            }
+        }
+        return expensiveItem;
+    }
+
+    return (<div className= "most-expensive">
+            <h4>Expensive: {max().name} <br/>
+             {max().price}</h4>
+
+        </div>
+    )
 
 }
