@@ -1,0 +1,25 @@
+.products-list {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  top: 2px;
+  left: 2px;
+  border-radius: 4px;
+  border: 2px solid #282c34;
+}
+
+.most-expensive {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  top: 2px;
+  right: 2px;
+  border-radius: 4px;
+  border: 2px solid #282c34;
+  background: orange;
+  color: black !important;
+  float: right;
+}
+.most-expensive h4{
+  color: black !important;
+}
