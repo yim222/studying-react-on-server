@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {ProductsList} from "../../render-props-explaining/RenderPropsPoc";
 // import {useSelector, useDispatch} from 'react-redux';
 import {useSelector, useDispatch} from 'react-redux';
@@ -139,7 +139,18 @@ function MostExpensiveRedux(props) {
 
 function ProductsFunctionalRedux(props) {
     console.log("??")
+    useEffect(()=>{
+        console.log("useEffect")
+        startTimer();
 
+
+    },[]);
+    useLayoutEffect(()=>{
+
+        console.log("useLayoutEffect ");
+        dataToArray();
+
+    },[]);
     //inner functions
     function dataToArray() {
         data = [];
@@ -184,9 +195,10 @@ function ProductsFunctionalRedux(props) {
     let interval = null;
     const seconds = 3;
 
+
     //invocations
     dataToArray();
-    startTimer();
+
 
 
     console.log("data = ", data);
