@@ -138,12 +138,63 @@ function MostExpensiveRedux(props) {
 // }
 
 function ProductsFunctionalRedux(props) {
-    const data = useSelector(selectProducts);
+    console.log("??")
+
+    //inner functions
+    function dataToArray() {
+        data = [];
+        for (const [key, value] of Object.entries(productsState)) {
+            console.log(`${key}: ${value}`);
+            data.push({name: key, price: value});
+        }
+
+    }
+
+    function startTimer() {
+        interval = setInterval(() => {
+                // this.setState({
+                //     book: this.getRandomInt(100),
+                //     bread: this.getRandomInt(100),
+                //     shoes: this.getRandomInt(100),
+                //     candle: this.getRandomInt(100)
+                // });
+
+                dispatch(setProducts(
+                    {
+                        book: getRandomInt(100),
+                        bread: getRandomInt(100),
+                        shoes: getRandomInt(100),
+                        candle: getRandomInt(100)
+                    }
+                ));
+                console.log("interval, data = " , productsState);
+                dataToArray();
+            }
+            , seconds * 3000);
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    //fields and logic:
+    const dispatch = useDispatch();
+    const productsState = useSelector(selectProducts);
+    let data = [];
+    let interval = null;
+    const seconds = 3;
+
+    //invocations
+    dataToArray();
+    startTimer();
+
+
     console.log("data = ", data);
 
-    return(
+    return (
         <div>
             Redux... on built
+            <ProductsListRedux data={data}/>
         </div>
     )
 

@@ -15,8 +15,9 @@ export const productsSlice = createSlice({
     },
     reducers: {
         setProducts: (oldState, action) => {
+            console.log("setProducts: ", oldState, " + action  = ", action);
             //I think payload is the default data that provided? -
-            oldState.products = action.payload;
+            oldState.value = action.payload;
         },
         // decrement: state => {
         //     state.value -= 1;
