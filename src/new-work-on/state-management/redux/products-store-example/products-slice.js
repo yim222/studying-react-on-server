@@ -16,7 +16,7 @@ export const productsSlice = createSlice({
     reducers: {
         set: (oldState, action) => {
             //I think payload is the default data that provided? -
-            oldState.initialState.products = action.payload;
+            oldState.products = action.payload;
         },
         // decrement: state => {
         //     state.value -= 1;
@@ -26,5 +26,10 @@ export const productsSlice = createSlice({
         // },
     },
 });
+
+// The function below is called a selector and allows us to select a value from
+// the state. Selectors can also be defined inline where they're used instead of
+// in the slice file. For example: `useSelector((state) => state.counter.value)`
+export const selectProducts = state => state.prodcuts.value;
 
 export const {set} = productsSlice.actions;

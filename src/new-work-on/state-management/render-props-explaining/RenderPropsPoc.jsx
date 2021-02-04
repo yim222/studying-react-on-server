@@ -48,14 +48,14 @@ export class RenderPropsPoc extends React.Component {
                     </div>)}/>
                 <h3>two components with render props : </h3>
                 <ProductsData
-                render = {(data )=>
-                    <div>
-                        <ProductsList data = {data }/>
-                        <MostExpensive data ={data}/>
-                    </div>
+                    render={(data) =>
+                        <div>
+                            <ProductsList data={data}/>
+                            <MostExpensive data={data}/>
+                        </div>
 
 
-                }/>
+                    }/>
 
             </div>
 
