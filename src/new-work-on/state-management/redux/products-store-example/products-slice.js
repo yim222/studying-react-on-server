@@ -6,7 +6,7 @@ import {createSlice} from '@reduxjs/toolkit';
 export const productsSlice = createSlice({
     name: 'products',
     initialState: {
-        products: {
+        value: {
             book: 0,
             bread: 0,
             shoes: 0,
@@ -14,7 +14,7 @@ export const productsSlice = createSlice({
         }
     },
     reducers: {
-        set: (oldState, action) => {
+        setProducts: (oldState, action) => {
             //I think payload is the default data that provided? -
             oldState.products = action.payload;
         },
@@ -30,6 +30,7 @@ export const productsSlice = createSlice({
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectProducts = state => state.prodcuts.value;
+export const selectProducts = state => state.products.value;
 
-export const {set} = productsSlice.actions;
+export const {setProducts} = productsSlice.actions;
+export default productsSlice.reducer;
