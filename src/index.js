@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {Example1} from "./new-work-on/react-hooks/sub-comps/DraftHooks";
+import store from "./new-work-on/state-management/redux/products-store-example/store";
+import {Provider} from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    // <React.StrictMode>
+    <Provider store={store}>
+        <App/>
+    </Provider>
+    // </React.StrictMode>
+    , document.getElementById('root'));
 // ReactDOM.render(<Example1 />, document.getElementById('hooks'));
 
 

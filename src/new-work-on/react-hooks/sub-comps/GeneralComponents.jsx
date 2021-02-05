@@ -2,7 +2,7 @@ import React, {useState, useEffect, useLayoutEffect, useContext, useMemo
 ,useRef, useDebugValue} from 'react';
 import {CustomHooks2, useRandomGenerator} from "./CustomHooks";
 
-
+//TOOD - work by the word document. 
 export function GeneralCompsHooks(){
     return(
         <div>
@@ -18,6 +18,10 @@ export function GeneralCompsHooks(){
 
         </div>
     )
+}
+
+export class SimpleSquareClassic extends React.Component{
+
 }
 
 export function SimpleSquareHooks(props){
