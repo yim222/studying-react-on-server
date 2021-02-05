@@ -6,6 +6,7 @@
   left: 2px;
   border-radius: 4px;
   border: 2px solid #282c34;
+  display: inline-block;
 }
 
 .most-expensive {

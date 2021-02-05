@@ -39,13 +39,25 @@ export class ProductsListRedux extends React.Component {
 
 }
 
-function MostExpensiveRedux(props) {
+function MostExpensiveRedux() {
+    const productsState = useSelector(selectProducts);
+    let data = [];
+    dataToArray();
+    console.log("data = ", data);
+
+    function dataToArray() {
+        data = [];
+        for (const [key, value] of Object.entries(productsState)) {
+            console.log(`${key}: ${value}`);
+            data.push({name: key, price: value});
+        }
+    }
 
     function max() {
         // let numbers = props.data.map(item=>item.price);
         //         // console.log("numebrs = " + numbers);
         let expensiveItem = {item: "", price: 0};
-        for (let i of props.data) {
+        for (let i of data) {
             console.log("i = ", i);
             if (i.price > expensiveItem.price) {
                 expensiveItem = i;
@@ -139,18 +151,19 @@ function MostExpensiveRedux(props) {
 
 function ProductsFunctionalRedux(props) {
     console.log("??")
-    useEffect(()=>{
+    useEffect(() => {
         console.log("useEffect")
         startTimer();
 
 
-    },[]);
-    useLayoutEffect(()=>{
+    }, []);
+    useLayoutEffect(() => {
 
         console.log("useLayoutEffect ");
         dataToArray();
 
-    },[]);
+    }, []);
+
     //inner functions
     function dataToArray() {
         data = [];
@@ -178,7 +191,7 @@ function ProductsFunctionalRedux(props) {
                         candle: getRandomInt(100)
                     }
                 ));
-                console.log("interval, data = " , productsState);
+                console.log("interval, data = ", productsState);
                 dataToArray();
             }
             , seconds * 3000);
@@ -200,13 +213,68 @@ function ProductsFunctionalRedux(props) {
     dataToArray();
 
 
-
     console.log("data = ", data);
 
     return (
         <div>
             Redux... on built
             <ProductsListRedux data={data}/>
+            <MostExpensiveRedux/>
+        </div>
+    )
+
+}
+
+//clean version
+function ProductsFunctionalRedux2() {
+    useEffect(() => {
+        console.log("useEffect")
+        startTimer();
+    }, []);
+
+    //inner functions
+    function dataToArray() {
+        data = [];
+        for (const [key, value] of Object.entries(productsState)) {
+            console.log(`${key}: ${value}`);
+            data.push({name: key, price: value});
+        }
+
+    }
+
+    function startTimer() {
+        interval = setInterval(() => {
+                dispatch(setProducts(
+                    {
+                        book: getRandomInt(100),
+                        bread: getRandomInt(100),
+                        shoes: getRandomInt(100),
+                        candle: getRandomInt(100)
+                    }
+                ));
+                console.log("interval, data = ", productsState);
+                dataToArray();
+            }
+            , seconds * 3000);
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+    //fields and logic:
+    const dispatch = useDispatch();
+    const productsState = useSelector(selectProducts);
+    let data = [];
+    let interval = null;
+    const seconds = 3;
+    //invocations
+    dataToArray();
+    console.log("data = ", data);
+    return (
+        <div>
+            Redux... on built
+            <ProductsListRedux data={data}/>
+            <MostExpensiveRedux/>
         </div>
     )
 
