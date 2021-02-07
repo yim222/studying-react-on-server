@@ -4,7 +4,6 @@ import {ProductsList} from "../../render-props-explaining/RenderPropsPoc";
 import {useSelector, useDispatch} from 'react-redux';
 import {selectProducts, setProducts} from "./products-slice";
 
-
 export function ProductsFeature() {
     return (
         <div>
@@ -16,6 +15,9 @@ export function ProductsFeature() {
     )
 }
 
+/**
+ *  use
+ */
 export class ProductsListRedux extends React.Component {
     constructor(props) {
         super(props);
