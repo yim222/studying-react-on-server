@@ -95,15 +95,20 @@ export function RegularComp1() {
     }
     // let myObj4 = JSON.parse(request2.responseText);
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", proxy + cnn, true);
+    xhr.open("GET",  cnn, true);
 
 //Send the proper header information along with the request
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//headers['access-control-allow-origin'] = '*';
+    xhr.setRequestHeader("access-control-allow-origin", "*");
     xhr.onreadystatechange = function () { // Call a function when the state changes.
+        console.log("happen?", xhr.responseText)
+        // console.log(xhr.getResponseHeader("Content-Type"));
+        // console.log(xhr.getAllResponseHeaders());
+
+
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
-            console.log("happen?", xhr.responseText)
+            console.log("happen?  good", xhr.responseText)
         }
     }
     xhr.send();
