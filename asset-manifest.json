@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/studying-react-on-server/static/css/main.611bf2e6.chunk.css",
-    "main.js": "/studying-react-on-server/static/js/main.73527c20.chunk.js",
-    "main.js.map": "/studying-react-on-server/static/js/main.73527c20.chunk.js.map",
+    "main.js": "/studying-react-on-server/static/js/main.d6f15ee6.chunk.js",
+    "main.js.map": "/studying-react-on-server/static/js/main.d6f15ee6.chunk.js.map",
     "runtime-main.js": "/studying-react-on-server/static/js/runtime-main.58eaebb0.js",
     "runtime-main.js.map": "/studying-react-on-server/static/js/runtime-main.58eaebb0.js.map",
     "static/js/2.269bc604.chunk.js": "/studying-react-on-server/static/js/2.269bc604.chunk.js",
     "static/js/2.269bc604.chunk.js.map": "/studying-react-on-server/static/js/2.269bc604.chunk.js.map",
     "index.html": "/studying-react-on-server/index.html",
-    "precache-manifest.a86d6ecffa186f4e229fd434f186192d.js": "/studying-react-on-server/precache-manifest.a86d6ecffa186f4e229fd434f186192d.js",
+    "precache-manifest.e57b54eccbb08bcd83bd6de79fc2ee9c.js": "/studying-react-on-server/precache-manifest.e57b54eccbb08bcd83bd6de79fc2ee9c.js",
     "service-worker.js": "/studying-react-on-server/service-worker.js",
     "static/css/main.611bf2e6.chunk.css.map": "/studying-react-on-server/static/css/main.611bf2e6.chunk.css.map",
     "static/js/2.269bc604.chunk.js.LICENSE.txt": "/studying-react-on-server/static/js/2.269bc604.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.58eaebb0.js",
     "static/js/2.269bc604.chunk.js",
     "static/css/main.611bf2e6.chunk.css",
-    "static/js/main.73527c20.chunk.js"
+    "static/js/main.d6f15ee6.chunk.js"
   ]
 }
