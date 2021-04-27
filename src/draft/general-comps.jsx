@@ -70,14 +70,27 @@ export function RegularComp1() {
     let cnn = "http://rss.cnn.com/rss/edition.rss";
     let ynet = "http://www.ynet.co.il/Integration/StoryRss975.xml";
     let proxy = "https://cors-anywhere.herokuapp.com/";
-    request2.open("GET", proxy + cnn);
-    request2.send();
-    console.log("kk?")
+    let fox = "http://feeds.foxnews.com/foxnews/national";
+
+
+
+    fetch(cnn, { mode: 'no-cors'}).then((res=>{//use less
+        console.log("lingarRes" , res)
+    })).catch((e)=>{
+        console.log("error - " , e)
+    })
+
+    fetch("https://cors-anywhere.herokuapp.com/" + cnn).then((res=>{//use less
+        console.log("lingarRes2" , res)
+    })).catch((e)=>{
+        console.log("error - " , e)
+    })
+
 
     request2.onreadystatechange = () => {
         if (request.readyState == 4 && request.status == 200) {
             let myObj3 = JSON.parse(request2.responseText);
-            console.log("resoonse");
+            console.log("lingar res 3");
             console.log(request2);
             console.log("object??")
             console.log(myObj3)
@@ -93,6 +106,10 @@ export function RegularComp1() {
         }
 
     }
+
+    request2.open("GET", proxy + ynet);//fox/ynet/ cnn
+    request2.send();
+    console.log("kk?")
     // let myObj4 = JSON.parse(request2.responseText);
     var xhr = new XMLHttpRequest();
     xhr.open("GET",  cnn, true);
@@ -100,8 +117,9 @@ export function RegularComp1() {
 //Send the proper header information along with the request
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//headers['access-control-allow-origin'] = '*';
     xhr.setRequestHeader("access-control-allow-origin", "*");
+
     xhr.onreadystatechange = function () { // Call a function when the state changes.
-        console.log("happen?", xhr.responseText)
+        console.log("happen lingar?", xhr.responseText)
         // console.log(xhr.getResponseHeader("Content-Type"));
         // console.log(xhr.getAllResponseHeaders());
 

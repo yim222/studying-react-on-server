@@ -21,7 +21,7 @@ class App extends Component {
         <div>
           <header className="App-header">
               {/*<Example1/>*/}
-          <div className = "location-view">
+          <div className = "location-view " >
           <SuperMainView/>
               {/*<ReactRoute1/>*/}
               {/*<MainView/>*/}
