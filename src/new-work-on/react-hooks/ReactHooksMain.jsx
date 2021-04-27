@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {Link, Route} from "react-router-dom";
 import {DraftHooks, Example1} from "./sub-comps/DraftHooks";
 import {GeneralCompsHooks} from "./sub-comps/GeneralComponents";
