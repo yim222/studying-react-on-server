@@ -14,7 +14,14 @@ import {Main as TECH500} from './tech500-exercise/components/main.js'
 
 //import './studyingExamples/componentsStudying1.js'
 
-class App extends Component {
+ /**
+  * Deploy on github:
+  *
+  *https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
+  * run
+  * npm run deploy the changes should be on master
+  */
+ class App extends Component {
   render() {
     return (
       <div className="App">
