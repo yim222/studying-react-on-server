@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!--	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SU
+  PF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>-->
+
+		<link href ="style.css" rel= "stylesheet">
+      <meta charset = "UTF-8">
+      <title>Studying React - part 1</title>
+   </head>
+   <body>
+     <p>wgh</p>
+     <a href = "StudyingReact-part2.html">go to part2</a></p>
+     <p> GEtting start - please read that for remeber how to work with react from the start</p>
+     <h1>Start with react - 3 ways </h1>
+
+     <ul>
+        <li>1- The simple way with manually adding tags, and start compilers when you need.
+        <br/>This is how this project is built. But for example u encounter problems when
+      U are need server, some syntax not work on local machine. It's recommended by them to existing websites, apparently because
+    they have already running enviroment.</li>
+        <li>2- With create react app command - this is the primary and recommended way.
+        see <a href="https://reactjs.org/docs/create-a-new-react-app.html">here</a> about that
+      this is very simple , just 3 commands :
+          <pre>
+            npx create-react-app my-app
+            cd my-app
+            npm start
+          </pre>
+         </li>
+         <li>with manually install packages like explained <a href="https://www.tutorialspoint.com/reactjs/reactjs_environment_setup.htm">here</a>
+          </li>
+
+     </ul>
+     <h2>Anyway - u should create basic projects for convient of the work</h2>
+     <p>Sometimes there is problems to copy projects from the windows, so u can do it from the CMD<br/>
+    <pre>***xcopy /S sourceFolder destinationfolder</pre>   <br/>
+https://ss64.com/nt/xcopy.html
+</p>
+      <h2>Don't forget that there is changes that need to be done, when u moving to producton area. Don't
+      remeber when but it's reminded in all through the guides </h2>
+     <h1>Add react : <br> This is component from the doc </h1>
+     <h2>1- create dom element - it's mean simple div element </h2>
+      <div id = "reactApp1"></div>
+
+      <h2>2- load react - Here below we load react and my component</h2>
+      <!-- ... other HTML ... -->
+      <p>Here is my component</p>
+      <div id ="component2"></div>
+
+      <p>Here is my component with JSX from inside </p>
+      <div id ="jsxComponent"></div>
+
+      <p>Here is my component with JSX from outside </p>
+      <div id ="jsxComponent2"></div>
+      <div id ="aaa"></div>
+
+      <p>Here is my component react from inside. is work ? YEAH!!! </p>
+      <div id ="component22"></div>
+
+      <h1>That's was guideness for beginnin - if you don't remember how
+        to start please see   <a href = 'https://reactjs.org/docs/getting-started.html'>that</a>
+      </h1>
+
+      <p><a href = 'https://reactjs.org/docs/create-a-new-react-app.html'>Here</a> is documentation
+        for creating app project with their recommendation. U can consider it in future,
+        believe there are a lot of methods.
+      </p>
+
+       <!-- Load React. -->
+       <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+       <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+       <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+       <!-- For use JSX -->
+       <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+       <div id="root"></div>
+    <script type="text/babel">
+
+      ReactDOM.render(
+        <h1>Hello, world! - I am inner react ? -inner JSX apparently </h1>,
+        document.getElementById('root')
+      );
+
+    </script>
+
+
+
+       <!-- Load our React component. -->
+       <script src="component1.js"></script>
+        <script src="components/component2.js"></script>
+      <!-- That's not work!!! ;;;-<<<
+    Maybe that's will work ;((()))-->
+     <script src="jsxComponent.js"></script>
+     <script src="jsxComponent0.js"></script>
+    <!-- inner JSX component -->
+    <script  type = "text/babel">
+
+
+
+    ReactDOM.render(<h1>I am JSX inner component </h1> ,
+       document.getElementById('jsxComponent'));
+
+
+    </script>
+    <script>
+
+    'use strict'
+    const e22 = React.createElement;
+
+    class Component22 extends React.Component{
+
+      render(){
+
+        //return '<h1>I am very simple component2</h1>';
+        return e22('h1', null, 'I am with syntax thatt generate html - from'
+        + ' Inner code in that HTML ! ');
+      }
+      /*
+      eturn e(//display <button>
+        'button',
+        { onClick: () => this.setState({ liked: true }) },
+        'Like'
+      );*/
+
+    }
+    const domContainer22 = document.querySelector('#component22');
+    ReactDOM.render(e22(Component22), domContainer22);
+    </script>
+
+
+   </body>
+</html>

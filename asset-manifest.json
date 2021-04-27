@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/studying-react-on-server/static/css/main.611bf2e6.chunk.css",
+    "main.js": "/studying-react-on-server/static/js/main.73527c20.chunk.js",
+    "main.js.map": "/studying-react-on-server/static/js/main.73527c20.chunk.js.map",
+    "runtime-main.js": "/studying-react-on-server/static/js/runtime-main.58eaebb0.js",
+    "runtime-main.js.map": "/studying-react-on-server/static/js/runtime-main.58eaebb0.js.map",
+    "static/js/2.269bc604.chunk.js": "/studying-react-on-server/static/js/2.269bc604.chunk.js",
+    "static/js/2.269bc604.chunk.js.map": "/studying-react-on-server/static/js/2.269bc604.chunk.js.map",
+    "index.html": "/studying-react-on-server/index.html",
+    "precache-manifest.a86d6ecffa186f4e229fd434f186192d.js": "/studying-react-on-server/precache-manifest.a86d6ecffa186f4e229fd434f186192d.js",
+    "service-worker.js": "/studying-react-on-server/service-worker.js",
+    "static/css/main.611bf2e6.chunk.css.map": "/studying-react-on-server/static/css/main.611bf2e6.chunk.css.map",
+    "static/js/2.269bc604.chunk.js.LICENSE.txt": "/studying-react-on-server/static/js/2.269bc604.chunk.js.LICENSE.txt",
+    "static/media/error.png": "/studying-react-on-server/static/media/error.2ba40259.png",
+    "static/media/logo.svg": "/studying-react-on-server/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.58eaebb0.js",
+    "static/js/2.269bc604.chunk.js",
+    "static/css/main.611bf2e6.chunk.css",
+    "static/js/main.73527c20.chunk.js"
+  ]
+}
