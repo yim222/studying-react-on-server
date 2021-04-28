@@ -16,7 +16,7 @@ import {ErrorHandlingMain} from "../new-work-on/error-handling";
 import {ReactHooksMain} from "../new-work-on/react-hooks/ReactHooksMain";
 import {StateManagementMain} from "../new-work-on/state-management/StateManagementMain";
 import {DraftMainView} from "../draft/draft-main-view";
-import {ProblemsAndSolutions} from "../locationApp/ProblemsAndSolutionsComponent";
+import {ProblemsAndSolutions} from "../new-work-on/problems-and-solutions/ProblemsAndSolutionsComponent";
 
 
 
