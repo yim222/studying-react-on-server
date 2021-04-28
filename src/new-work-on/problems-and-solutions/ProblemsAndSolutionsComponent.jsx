@@ -6,7 +6,7 @@ export function ProblemsAndSolutions() {
         <div>
             <h2>Here introduce some problems with possible solutions (hopefully they have been solved)</h2>
             <h3>Pay attention! All here is short and drafti. I only came to share
-            some examples and insights. </h3>
+                some examples and insights. </h3>
             <RssCorsProblem/>
         </div>
     );
@@ -64,7 +64,8 @@ function RssCorsProblem() {
     return (
         <div className="app-body">
             <h2>CORS and RSS problem</h2>
-            <a href= "">Source code</a>
+            <a href="https://github.com/yim222/studying-react-on-server/blob/A-update/src/new-work-on/problems-and-solutions/ProblemsAndSolutionsComponent.jsx">
+                Source code</a>
             <h3>
                 I have this annoying problem - when I want to get RSS it's blocked by Cors-origin.
             </h3>
