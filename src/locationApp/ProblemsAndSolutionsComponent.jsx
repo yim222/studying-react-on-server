@@ -5,6 +5,8 @@ export function ProblemsAndSolutions() {
     return (
         <div>
             <h2>Here introduce some problems with possible solutions (hopefully they have been solved)</h2>
+            <h3>Pay attention! All here is short and drafti. I only came to share
+            some examples and insights. </h3>
             <RssCorsProblem/>
         </div>
     );
