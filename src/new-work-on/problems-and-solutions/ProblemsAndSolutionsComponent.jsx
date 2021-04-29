@@ -14,6 +14,7 @@ export function ProblemsAndSolutions() {
 
 function RssCorsProblem() {
 
+
     /**example*/
 
     let cnn = "http://rss.cnn.com/rss/edition.rss";
@@ -22,14 +23,14 @@ function RssCorsProblem() {
     let fox = "http://feeds.foxnews.com/foxnews/national";
 
     let failedRequest = new XMLHttpRequest();
-
+    let title = "default text";
     failedRequest.onreadystatechange = () => {
         if (failedRequest.readyState == 4 && failedRequest.status == 200) {
             // let myObj3 = JSON.parse(request2.responseText);
             console.log("lingar res 3");
             console.log(failedRequest);
             console.log("object??")
-            console.log(failedRequest.responseText)
+            console.log(failedRequest.responseText);
             // console.log(myObj3)
 
         }
@@ -42,12 +43,29 @@ function RssCorsProblem() {
 
 
     let goodRequest = new XMLHttpRequest();
+    goodRequest.responseType = "document";
+    let items = "null";//each item has title value
+    goodRequest.onload =()=>{
+        items = goodRequest.response.getElementsByTagName("title");
+        console.log("items = " , items)
+        console.log("load - ", goodRequest.response);
+        title = items[2];
+        console.log("title = " ,  items[2].innerHTML)
+
+    }
 
     goodRequest.onreadystatechange = () => {
         if (goodRequest.readyState == 4 && goodRequest.status == 200) {
             console.log("good reuqest");
             console.log(goodRequest);
-            console.log(goodRequest.responseText)
+            // console.log(goodRequest.responseText)
+            console.log("Response = \n" , goodRequest.response)
+            console.log("Response type  = \n" , typeof goodRequest.response)
+            // console.log(goodRequest.response[2])
+            console.log(goodRequest.response.getElementsByTagName("item"));
+            title = goodRequest.response.getElementsByTagName("item")[2].innerHTML;
+
+
 
         }
 
@@ -66,6 +84,7 @@ function RssCorsProblem() {
             <h2>CORS and RSS problem</h2>
             <a href="https://github.com/yim222/studying-react-on-server/blob/A-update/src/new-work-on/problems-and-solutions/ProblemsAndSolutionsComponent.jsx">
                 Source code</a>
+            <p>Title = {title}</p>
             <h3>
                 I have this annoying problem - when I want to get RSS it's blocked by Cors-origin.
             </h3>
