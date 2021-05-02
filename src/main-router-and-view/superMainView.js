@@ -17,6 +17,7 @@ import {ReactHooksMain} from "../new-work-on/react-hooks/ReactHooksMain";
 import {StateManagementMain} from "../new-work-on/state-management/StateManagementMain";
 import {DraftMainView} from "../draft/draft-main-view";
 import {ProblemsAndSolutions} from "../new-work-on/problems-and-solutions/ProblemsAndSolutionsComponent";
+import {Tutorial1} from "../new-work-on/tutorial1/Tutorial1";
 
 
 
@@ -93,6 +94,9 @@ const AppRouter = () => (
             <Link to="/problems-solutions">Problems and Solutions</Link>
           </li>
           <li>
+            <Link to="/tutorial1">Tutorial - 1</Link>
+          </li>
+          <li>
             <Link to="/TECH500">TECH500</Link>
           </li>
           <li>
@@ -122,6 +126,8 @@ const AppRouter = () => (
       <Route path="/react-hooks" component={ReactHooksMain} />
       <Route path="/state-management-react" component={StateManagementMain} />
       <Route path="/problems-solutions" component={ProblemsAndSolutions} />
+      <Route path="/tutorial1" component={Tutorial1} />
+
 
       <Route path="/draft" component={DraftMainView} />
 

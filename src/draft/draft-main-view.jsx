@@ -1,5 +1,5 @@
 import React from "react";
-import {RegularComp1} from "./general-comps";
+// import {RegularComp1} from "./general-comps";
 
 export function DraftMainView(){
     return(
@@ -7,7 +7,7 @@ export function DraftMainView(){
             <h2>Draft main-view</h2>
             <p>The component reside inside src/draft</p>
             <p>Do here as you wish</p>
-            <RegularComp1/>
+            {/*<RegularComp1/>*/}
 
 
         </div>
