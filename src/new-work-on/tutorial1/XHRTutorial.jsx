@@ -2,13 +2,14 @@ import React, {useEffect} from "react";
 
 export function XHRQuickBrief() {
     console.log("xml tutorial ");
-    useEffect(()=>{
+    useEffect(() => {
         console.log("Happen once ")
-        runXhr1();
+        // runXhr1();
         runXhr2();
+        // runXhr3();
 
 
-    },[]);
+    }, []);
 
 
     return (
@@ -49,7 +50,10 @@ export function XHRQuickBrief() {
                 Notice - common mistake is to defined action inside listeners. Search inside the code
                 for the phrase: "defining mistakenly inside lisetner."
                 <br/>
+                See in the code things, maybe mutliple requests making things work not as expected.
 
+                <br/>
+                Uncomment the function runXhr 1/2/3
 
             </p>
 
@@ -81,31 +85,54 @@ function runXhr2() {
     };
 
     //Here we adding listenr from the onload event
-    rssXhr1.onload = () => {
+    rssXhr1.onload = function () {
 
         console.log("load rssXhr1- event adding listner ", rssXhr1.response);
-        reqListener();
+        // reqListener();//won't good, since it won't recognize the request
 
     }
 
     //defining proper onchange
-    rssXhr1.onreadystatechange = function(){
-        console.log("rssxhr1 changed #" + counter++ )  ;
-        if(rssXhr1.status === 200){
+    rssXhr1.onreadystatechange = function () {
+
+        // rssXhr1.onload = function () {
+        console.log("rssxhr1 changed #" + counter++);
+        //for it will work u need to wait to the finishing
+        if (rssXhr1.readyState === XMLHttpRequest.DONE) {
+            console.log("run xhr - status ready")
+
+        }  //it's not status 200
+        else {
+            console.log("status not ready = ", rssXhr1.status)
+            console.log("ready -  ", rssXhr1.readyState)
+
+            console.log("Status isn't ready. ");
+            console.warn("Maybe u need to request access here : https://cors-anywhere.herokuapp.com/ (see comments)");
+        }
+
+
+        //ssjjskj
+        if (rssXhr1.status === 200) {
             console.log("Request is well ");
 
             //when I didn't defined the response type to xml
-            if(rssXhr1.responseType !== "document"){
+            if (rssXhr1.responseType !== "document") {
                 console.log("response type = ", rssXhr1.responseType);
-                console.log("The actual response - ", rssXhr1. response);
-                console.log("See it as xml - " , rssXhr1.responseXML);
+                console.log("The actual response - ", rssXhr1.response);
+                console.log("See it as xml (this doesn't work in the firsts empty responses- ", rssXhr1.responseXML);
                 console.log("From here U can take it and parse. See inside the comments "
-                    +"some idea's");
+                    + "some idea's");
+                if (rssXhr1.responseXML != null) {
+                    let items = rssXhr1.responseXML.getElementsByTagName("item");
+                    console.log("items = ", items);
+                    console.log(items[1].innerHTML);
+                }
 
-               let items = rssXhr1.responseXML.getElementsByTagName("item");
-                console.log("items = " , items);
-                console.log(items[1].innerHTML)
-            }else {//this is document type and will come as xml
+                //here U can found more about parsing xml to objects:
+                //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#analyzing_and_manipulating_the_responsexml_property
+
+
+            } else {//this is document type and will come as xml
                 console.log("this is document type and will come as xml -  ");
                 console.log(rssXhr1.response);
 
@@ -113,6 +140,7 @@ function runXhr2() {
         }
         //it's not status 200
         else {
+            console.log("status = ", rssXhr1.status);
             console.log("Status isn't 200. ");
             console.warn("Maybe u need to request access here : https://cors-anywhere.herokuapp.com/ (see comments)");
         }
@@ -122,22 +150,40 @@ function runXhr2() {
     console.log("First let's send directly to rss. See the error ");
 
 
-    // rssXhr1.responseType = "document";
-
-
     console.log("1- without proxy: ");
-    rssXhr1.open("GET",  cnn);//fox/ynet/ cnn
+    rssXhr1.open("GET", cnn);//fox/ynet/ cnn
+
+
     rssXhr1.send();
 
-    console.log("2- with proxy (on the first time U will get error and U need to request access ... ");
+    console.log("2- with proxy (on the first time U will get error and U need to request access ... ) and regular type");
+
+    // rssXhr1.open("GET", cnn);//fox/ynet/ cnn
+    rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
+    // rssXhr1.open("GET", "https://reqres.in/api/users");
 
 
+    rssXhr1.send();
+
+    console.log("3- with proxy and document type");
+    rssXhr1.responseType = "document";
+
+
+    // rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
+    // rssXhr1.open("GET", "https://reqres.in/api/users");
+
+    rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
+
+    rssXhr1.send();
+    // rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
+    // rssXhr1.send();
+    console.log("do...")
 
 
     //This will be working by using the proxy  https://cors-anywhere.herokuapp.com/
     //in the first time you run it, it will also fail. U need to request temp access. See the docs there and on the web on how
     //to create proxy by your self.
-    rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
+    // rssXhr1.open("GET", proxy + cnn);//fox/ynet/ cnn
     // rssXhr1.open("GET",  cnn);//fox/ynet/ cnn
 
 }
@@ -145,8 +191,9 @@ function runXhr2() {
 //This function will be served as listner to all request.
 function reqListener() {
     console.log("response general listener  = ", this);
-    console.log("URl = " + this.responseURL);
+    // console.log("URl = " + this.responseURL);
     console.log("Status  = ", this.status);
+
     if (this.status === 200) {
         console.log("The status is good, this is the response : ", this.response)
         //U can try such things inside the component, but it's need to be done properly:
@@ -179,7 +226,7 @@ function runXhr1() {
 
             console.log("Parsing the response from Json to Object. ")
             let data = JSON.parse(req1.responseText);
-            console.log("This is the object - \n", data );
+            console.log("This is the object - \n", data);
             console.table(data.data);
             // setUsers(data.data);//don't use setState here - it's make problems.
 
@@ -228,14 +275,14 @@ function runXhr1() {
     xmlhttp.open(method, url, true);
     xmlhttp.onerror = function () {
         console.log("** An error occurred during the transaction");
-        return;
+        // return;
     };
     xmlhttp.send();
 
     console.log("We can define the response type, if we know it's json. ");
     let req2 = new XMLHttpRequest();
     req2.responseType = "json";
-    req2.onreadystatechange = function(){
+    req2.onreadystatechange = function () {
         // console.log("req2 change...");
         if (req2.status == 200) {
             console.log("status good. Request object  = \n", req2)
@@ -252,80 +299,63 @@ function runXhr1() {
     req2.send();//This is the execution of the request.
 }
 
-
-
-function getRss() {
-
-
-    /**example*/
-
+function runXhr3() {
+    console.log("runXhr3 - Running RSS - good request ");
     let cnn = "http://rss.cnn.com/rss/edition.rss";
     let ynet = "http://www.ynet.co.il/Integration/StoryRss975.xml";
     let proxy = "https://cors-anywhere.herokuapp.com/";//https://cors-anywhere.herokuapp.com/
     let fox = "http://feeds.foxnews.com/foxnews/national";
 
-    let title = "default text";
-
-    //
-    // let failedRequest = new XMLHttpRequest();
-    // failedRequest.onreadystatechange = () => {
-    //     if (failedRequest.readyState == 4 && failedRequest.status == 200) {
-    //         // let myObj3 = JSON.parse(request2.responseText);
-    //         console.log("lingar res 3");
-    //         console.log(failedRequest);
-    //         console.log("object??")
-    //         console.log(failedRequest.responseText);
-    //         // console.log(myObj3)
-    //
-    //     }
-    // }
-    // //This request possibility will  be  failed , by cors error, or also http error. And maybe others.
-    // failedRequest.open("GET", cnn);//fox/ynet/ cnn
-    // // request2.open("GET", proxy +  cnn);//fox/ynet/ cnn -- this will fix it
-    //
-    // failedRequest.send();
+    let req1 = new XMLHttpRequest();
+    req1.addEventListener("load", reqListener);// Here we adding listner to each load of the request .
+    let counter = 0;
+    req1.onreadystatechange = () => {
+        console.log("This onreadystatechange is also like event for the request - ", req1);
+        //onChange - get the items
+        if (req1.status == 200) {
+            console.log("Request finished")
+            console.log("status good. Request object  = \n", req1)
+            console.log(" status = ", req1.status);
+            console.log(" request response - \n", req1.response);
+            console.log("U have also other things, like response - xml/json/text/ See the docs. ")
 
 
-    let goodRequest = new XMLHttpRequest();
-    goodRequest.responseType = "document";
-    let items = "null";//each item has title value
-    goodRequest.onload = () => {
-        // items = goodRequest.response.getElementsByTagName("title");
-        // console.log("items = ", items)
-        // console.log("load - ", goodRequest.response);
-        // console.log("Response json xml - ", goodRequest.responseXML)
-        // title = items[2];
-        // console.log("title = ", items[2].innerHTML)
+        } else {
+            console.log("status is other then expected= " + req1.status);
+
+        }
+        //THis is another way to check and handle the status
+        // In local files, status is 0 upon success in Mozilla Firefox
+        if (req1.readyState === XMLHttpRequest.DONE) {
+            console.log("Status ready = Another way to handle request - check if req1.readyState === XMLHttpRequest.DONE")
+            const status = req1.status;
+            if (status === 0 || (status >= 200 && status < 400)) {
+                // The request has been completed successfully
+                console.log("status === 0 || (status >= 200 && status < 400)");
+            } else {
+                console.log("status === 0 || (status >= 200 && status < 400).\n " +
+                    "Oh no! There has been an error with the request!");
+            }
+        }
+        //Notice - common mistake is to defined action inside listeners
+        //for example at first this was here and the request didn't executed.
+        //With proper programming you should write organize
+
+        // //Here we defining the request. There are more optional params and it's possible to add body/headers etc things that https requests use.
+        //defining mistakenly inside listener.
+        // req1.open("GET", "https://reqres.in/api/users");
+        // console.log("here...")
+        // req1.send();//This is the execution of the request.
 
     }
 
-    goodRequest.onreadystatechange = () => {
-        if (goodRequest.readyState == 4 && goodRequest.status == 200) {
-            console.log("good reuqest");
-            console.log(goodRequest);
-            // console.log(goodRequest.responseText)
-            console.log("Response = \n", goodRequest.response)
-            console.log("Response type  = \n", typeof goodRequest.response)
-            // console.log(goodRequest.response[2])
-            // console.log(goodRequest.response.getElementsByTagName("item"));
-            // title = goodRequest.response.getElementsByTagName("item")[2].innerHTML;
-            console.log("response xml = ", goodRequest.responseXML)
 
+    //The bottom code cause the freezing
 
-        }
-        //WOn't be called if the response is error. Will be called if the network trancsaction didn't statrted
-        goodRequest.onerror = function () {
-            console.log("goodRequest Error, maybe U need to request access here :  https://cors-anywhere.herokuapp.com/")
-        }
-
-    }
-
-    //This will be working by using the proxy  https://cors-anywhere.herokuapp.com/
-    //in the first time you run it, it will also fail. U need to request temp access. See the docs there and on the web on how
-    //to create proxy by your self.
-    // goodRequest.open("GET", proxy + cnn);//fox/ynet/ cnn
-    goodRequest.open("GET", cnn);//fox/ynet/ cnn -- > This will cause network error - cors. Uncomment for try it.
-
-    goodRequest.send();
+    //Here we defining the request. There are more optional params and it's possible to add body/headers etc things that https requests use.
+    req1.open("GET", proxy + ynet);
+    console.log("here...")
+    req1.send();//This is the execution of the request.
 
 }
+
