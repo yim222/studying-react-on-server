@@ -155,8 +155,31 @@ function RssCorsProblem() {
                 The same-origin security policy forbids cross-origin access to resources. But CORS gives web servers the
                 ability to say they want to opt into allowing cross-origin access to their resources.</p>
             <p>There are some possible workarounds </p>
+           <h3>Your Online cors - final summary (todo - organize it) </h3>
+            <p>
+                Do a clean short summary.<br/>
+                If you want to best and quick solution – go on create your own proxy with cors-anywhere.<br/>
+                This is a build-in restriction. You have this service that created by someone that fixed it.<br/>
+                It’s from security reasons and in many time it’s efficient.<br/>
+
+                But not for public data like RSS.<br/>
+                All others solution you can found by 3rd parties aren’t recommended as enexpected things could happen, like happened with cors-anywhere in the recent time (Feb – 21);
+                https://github.com/Rob--W/cors-anywhere/issues/301<br/>
+
+                You easily can build proxy by that tutorial:<br/>
+                https://observablehq.com/@severo/setup-your-own-cors-proxy<br/>
+                From there You just need to prefix the cors request that you want them to work<br/>
+                myProxy + cnn.<br/>
+                See inside the code.<br/>
+                The time you will spend in a little get your hands dirty, with Heroku, will be much shorter then research the problems and find work around
+                This solution is good also for http/s problems like I saw in github pages.<br/>
+                I want to doc and summary nice, but it’s delay me. In the other way, now it’s hot in my mind.
+                Maybe only on the project and later do it as blog article.
+                (gather together 3-5 links with description).. write it in context of RSS, to prevenet mis understood.
+                <br/>
 
 
+            </p>
         </div>
     )
 }
