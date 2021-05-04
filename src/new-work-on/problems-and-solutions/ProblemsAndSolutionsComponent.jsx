@@ -1,4 +1,5 @@
 import React from "react";
+const cnnUrl = "http://rss.cnn.com/rss/edition.rss";
 
 export function ProblemsAndSolutions() {
 
@@ -21,6 +22,7 @@ function RssCorsProblem() {
     let ynet = "http://www.ynet.co.il/Integration/StoryRss975.xml";
     let proxy = "https://cors-anywhere.herokuapp.com/";//https://cors-anywhere.herokuapp.com/
     let fox = "http://feeds.foxnews.com/foxnews/national";
+    let myProxy = "https://lingar-allow-cors.herokuapp.com/";
 
     let failedRequest = new XMLHttpRequest();
     let title = "default text";
@@ -78,6 +80,26 @@ function RssCorsProblem() {
     // request2.open("GET",  cnn);//fox/ynet/ cnn
 
     goodRequest.send();
+
+
+    let myOwnProxy = new XMLHttpRequest();
+    myOwnProxy.onreadystatechange = () => {
+        if (myOwnProxy.readyState == 4 && myOwnProxy.status == 200) {
+            // let myObj3 = JSON.parse(request2.responseText);
+            console.log("myOwnProxy");
+            console.log(myOwnProxy);
+            console.log("object??")
+            console.log(myOwnProxy.responseText);
+            // console.log(myObj3)
+
+        }
+    }
+    //This request possibility will  be  failed , by cors error, or also http error. And maybe others.
+    myOwnProxy.open("GET", myProxy +  cnn);//fox/ynet/ cnn
+    // request2.open("GET", proxy +  cnn);//fox/ynet/ cnn -- this will fix it
+
+    myOwnProxy.send();
+
 
     return (
         <div className="app-body">

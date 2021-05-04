@@ -19,7 +19,10 @@ import {Main as TECH500} from './tech500-exercise/components/main.js'
   *
   *https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
   * run
-  * npm run deploy the changes should be on master
+  * npm run deploy the it will deploy the current version (from you local) of the code.
+  *
+  * the url:
+  * https://yim222.github.io/studying-react-on-server/
   */
  class App extends Component {
   render() {
