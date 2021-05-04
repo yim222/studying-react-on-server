@@ -1,8 +1,95 @@
-import React, {useState} from "react";
-import "./lingar.xml";
+import React, {useEffect, useState} from "react";
 //
 //
-// export function RegularComp1() {
+
+const cnnUrl = "http://rss.cnn.com/rss/edition.rss";
+const myProxy = "https://lingar-allow-cors.herokuapp.com/";
+
+export function RegularComp1() {
+
+    useEffect(()=>{
+        console.log("Regular component created... ");
+        argumentsAvailable("hii", 5 , 4);
+    },[]);
+
+    let callSyncXhr = () =>{
+        console.log("Calling sync request ... ");
+        syncXhr();
+
+        console.log("Log after request");
+
+    };
+
+    let callAsyncXhr = () =>{
+        console.log("Calling Async  request ... ");
+        asyncXhr();
+
+        console.log("Log after request");
+
+    };
+
+
+    return (
+        <div>
+            Draft regular component1
+            <p>Try to run the browser with slow-connection</p>
+
+            <p>TO save it - async/sync example </p>
+            <button onClick={callSyncXhr}>Sync call (stopping the execution) </button>
+            <button onClick={callAsyncXhr}>Async call ( isn't stopping the execution) </button>
+
+        </div>
+    )
+}
+
+
+function getData(url){
+
+}
+
+//Testing if the arbitrary args are available to the function...
+function argumentsAvailable(par1){
+    console.log("this is the par - ", par1);
+    console.log("This are the arbitrary args  : ")
+    console.log(arguments);
+    console.log("See how U can see the args at the log. It doesn't know what is arbitrary and what not ")
+}
+
+function syncXhr(){
+    let req1 = new XMLHttpRequest();
+    req1.onload = function() {
+        if (req1.readyState === 4) {
+            if (req1.status === 200) {
+                console.log("request done successfully. response = " , req1.response);
+            } else {
+
+                console.error("error on the reqeust - " , req1.statusText);
+            }
+        }
+    };
+    req1.open("GET",myProxy + cnnUrl, false);
+    req1.send(null);
+
+}
+
+
+function asyncXhr(){
+    let req1 = new XMLHttpRequest();
+    req1.onload = function() {
+        if (req1.readyState === 4) {
+            if (req1.status === 200) {
+                console.log("request done successfully. response = " , req1.response);
+            } else {
+
+                console.error("error on the reqeust - " , req1.statusText);
+            }
+        }
+    };
+    req1.open("GET",myProxy + cnnUrl, true);//actually, async is true by default
+    req1.send(null);
+
+}
+
 //     xmlHttpRequest();
 //     /**States*/ //todo model
 //     const [users, setUsers] = useState([]);
