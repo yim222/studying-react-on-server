@@ -84,6 +84,7 @@ function onSuccess(){
 
     // this.callback.apply(this, this.arguments);
     let arr = ["lingar args"];
+
     this.callback.apply(this,arr);
 
 
