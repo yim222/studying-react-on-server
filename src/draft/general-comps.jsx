@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {RSSViewer} from "./RssViewer1";
 //
 //
 
@@ -45,14 +46,26 @@ export function RegularComp1() {
             <button onClick={callSyncXhr}>Sync call (stopping the execution) </button>
             <button onClick={callAsyncXhr}>Async call ( isn't stopping the execution) </button>
 
+            <p>The callback should be shoted from the success function, by applying.
+            See the inside code and comments.</p>
             <button onClick={()=>{
                 console.log("clicked");
                 // loadFile("message.txt", handleData, "New message!\n\n");
 
                 getData(myProxy + cnnUrl, handleData, 12);
             }}>Try request 1 </button>
-        {/*    loadFile("message.txt", showMessage, "New message!\n\n");
-*/}
+            <p>Now need to :
+            <br/>1- Send the data to the callback. <br/>
+                2- Make the data before - XML.
+                <br/>   3- Inside the callback parse the XML to object(first do it by your way)
+                <br/>    4- Then assign the object to the state
+                <br/>    5- Then represent it.
+                <br/>   6- Then learn about parsing xml, maybe there is a better way
+                <br/>Let's work on another file, due to over code here.
+
+            </p>
+            <h4>Get data .</h4>
+            <RSSViewer/>
 
 
         </div>
