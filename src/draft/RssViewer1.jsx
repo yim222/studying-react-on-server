@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./rss-style.css";
 
-const cnnUrl = "http://rss.cnn.com/rss/edition.rss";
+const cnnUrl = "http://rss.cnn.com/rss/edition.rss";//latest
+const foxUrl = "http://feeds.foxnews.com/foxnews/latest";//latest
+const cnbc = "https://www.cnbc.com/id/100003114/device/rss/rss.html";//latest
 const myProxy = "https://lingar-allow-cors.herokuapp.com/";
 
 export function RSSViewer() {
@@ -31,7 +33,7 @@ export function RSSViewer() {
             <button onClick={() => {
                 console.log("clicked");
                 // loadFile("message.txt", handleData, "New message!\n\n");
-
+                // getData(myProxy + foxUrl, assignData, 12);//won't work, u need to do a proper parser
                 getData(myProxy + cnnUrl, assignData, 12);
             }}>Assign data to state
             </button>
