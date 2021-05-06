@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import "./rss-style.css";
 
 const cnnUrl = "http://rss.cnn.com/rss/edition.rss";
 const myProxy = "https://lingar-allow-cors.herokuapp.com/";
@@ -40,6 +41,18 @@ export function RSSViewer() {
                     <div>
                         <p>Here come data </p><p>{newsData[Math.floor(Math.random() * 10)].title}</p>
                         <div>{newsData[Math.floor(Math.random() * 10)].title}</div>
+                        <div className= "news-feed">
+                            {newsData.map((item, idx) => {
+                            return (
+                                <div key={idx} className= "news-item">
+                                    <p>Title: {item.title} </p>
+                                    <p>Description: {item.description} </p>
+                                </div>
+                            )
+                        })}
+                        </div>
+
+
                     </div> :
                     <p>No data</p>}
             </div>
