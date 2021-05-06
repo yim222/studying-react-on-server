@@ -39,6 +39,7 @@ export function RSSViewer() {
                 {newsData.length > 0 ?
                     <div>
                         <p>Here come data </p><p>{newsData[Math.floor(Math.random() * 10)].title}</p>
+                        <div>{newsData[Math.floor(Math.random() * 10)].title}</div>
                     </div> :
                     <p>No data</p>}
             </div>
@@ -130,6 +131,9 @@ function xmlToObject(data) {
 
 
         let title = item.getElementsByTagName("title")[0].innerHTML;
+        //removing cdata garbage
+        title = title.trim().replace(/^(\/\/\s*)?<!\[CDATA\[|(\/\/\s*)?\]\]>$/g, '');
+
         console.log("Title = ", title);
         // console.log(item.getElementsByTagName("description"));
         let description = "no description";
@@ -137,6 +141,8 @@ function xmlToObject(data) {
         console.log(innerData)
         if (innerData.length > 0) {
             description = item.getElementsByTagName("description")[0].innerHTML;
+            //removing cdata garbage
+            description = description.trim().replace(/^(\/\/\s*)?<!\[CDATA\[|(\/\/\s*)?\]\]>$/g, '');
 
         }
         console.log("description = ", description);
