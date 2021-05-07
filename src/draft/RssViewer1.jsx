@@ -43,27 +43,38 @@ export function RSSViewer() {
                     <div>
                         <p>Here come data </p><p>{newsData[Math.floor(Math.random() * 10)].title}</p>
                         <div>{newsData[Math.floor(Math.random() * 10)].title}</div>
-                        <div className= "news-feed">
+                        <div className="news-feed">
                             {newsData.map((item, idx) => {
-                            return (
-                                <div key={idx} className= "news-item">
-                                    <p>Title: {item.title} </p>
-                                    <p>Description: {item.description} </p>
-                                </div>
-                            )
-                        })}
+                                return (
+                                    <div key={idx} className="news-item">
+                                        <p>Title: {item.title} </p>
+                                        <p>Description: {item.description} </p>
+                                    </div>
+                                )
+                            })}
                         </div>
 
 
                     </div> :
                     <p>No data</p>}
+                <button onClick={parseXml2}>Parsing xml</button>
             </div>
 
         </div>
     )
 }
 
-
+/*
+const xmlStr = '<a id="a"><b id="b">hey!</b></a>';
+const parser = new DOMParser();
+const dom = parser.parseFromString(xmlStr, "application/xml");
+// print the name of the root element or error message
+console.log(dom.documentElement.nodeName == "parsererror" ? "error while parsing" : dom.documentElement.nodeName);
+ */
+/**
+ * const serializer = new XMLSerializer();
+ const xmlStr = serializer.serializeToString(doc);
+ */
 //From here U need to define the callback with what params. Here by this - xhr availabe
 //And its response. -  I don't sure.
 function onSuccess() {
@@ -76,6 +87,15 @@ function onSuccess() {
 
     // this.callback.apply(this, this.arguments);
     let xml = this.responseXML;
+    /*
+    // //for learning xmlSerializer
+
+    // const serializer = new XMLSerializer();
+    // //it's just make it into string - conclusion - the way you do it is ok.
+    // const xmlStr = serializer.serializeToString(xml);
+    // console.log("after parsing = ", xmlStr)
+    */
+
     let arr = [xml, "lingar args"];
     console.log("XML = \n", xml)
     let dataObj = xmlToObject(xml);
@@ -169,6 +189,20 @@ function xmlToObject(data) {
 
     }
     return arrayOfData;
+
+
+}
+
+//parse xml
+function parseXml2() {
+    console.log("parse  xml...");
+    const xmlStr = '<a id="a"><b id="b">hey!</b></a>';
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(xmlStr, "application/xml");
+    // print the name of the root element or error message
+    console.log(dom.documentElement.nodeName == "parsererror" ? "error while parsing" : dom.documentElement.nodeName);
+    console.log(dom.documentElement.nodeName == "parsererror" ? "error while parsing" : dom.documentElement.nodeName);
+
 
 
 }
