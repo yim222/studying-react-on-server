@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 import {RenderPropsPoc} from "./render-props-explaining/RenderPropsPoc";
 import {ReactHooksMain} from "../react-hooks/ReactHooksMain";
 import {ReduxMainView} from "./redux/redux-main";
+import {ReactContextMain} from "./react-context/ReactContextMain";
 
 export class StateManagementMain extends React.Component {
 
@@ -28,6 +29,7 @@ export class StateManagementMain extends React.Component {
                             <li><Link to="state-management-react/render-props-explanation/">Render - props </Link></li>
                             <li><Link to="">React hooks - TODO . U have example in the todos project.  </Link></li>
                             <li><Link to="">HOC - TODO  </Link></li>
+                            <li><Link to="/state-management-react/react-context-explanation/">React context - I don't sure it's related. - TODO  </Link></li>
 
                             <li><Link to="state-management-react/redux-explanation/">Redux - maybe the most common and expanded way</Link></li>
 
@@ -35,6 +37,8 @@ export class StateManagementMain extends React.Component {
                         </ol>
                         <Route path="/state-management-react/render-props-explanation" component={RenderPropsPoc}/>
                         <Route path="/state-management-react/redux-explanation/" component={ReduxMainView}/>
+                        <Route path="/state-management-react/react-context-explanation/" component={ReactContextMain}/>
+
 
 
                     </div>
