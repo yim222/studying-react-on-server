@@ -25,10 +25,20 @@ class ChangeNumbers extends React.Component{
 
     }
     componentDidMount() {
-        setInterval(()=>{
-
-        },3000)
+        // setInterval(()=>{
+        //
+        //     this.setState({
+        //         number: Math.floor(Math.random() * 100)
+        //     })
+        //
+        // },3000)
     }
+    changeNumber = ()=>{
+        this.setState({
+                    number: Math.floor(Math.random() * 100)
+        });
+    }
+
 
     render(){
         return(
@@ -36,9 +46,13 @@ class ChangeNumbers extends React.Component{
                 <h3>SImple example </h3>
                 <p>Here I have a number that will be changed and always I want that the children
                 component will be synchronzied with it, without pass it directly ( but from inside the component) . </p>
+                <button onClick={this.changeNumber}>Change number </button>
+                <NumberContext.Provider value={this.state.number}>
+                    <ShowNum1/>
+                    <ShowNum2/>
 
-                <ShowNum1/>
-                <ShowNum2/>
+                </NumberContext.Provider>
+
             </div>
         )
     }
@@ -48,7 +62,7 @@ class ChangeNumbers extends React.Component{
 class ShowNum1 extends React.Component{
     render(){
         return(
-            <p>Show num1 the num = {this.context}</p>
+            <p>Show num1 the num = {this.context + ""}</p>
         )
     }
 }
@@ -57,7 +71,7 @@ class ShowNum1 extends React.Component{
 class ShowNum2 extends React.Component{
     render(){
         return(
-            <p>Show num2 the num ={this.context}  </p>
+            <p>Show num2 the num ={this.context + ""}  </p>
         )
     }
 }
