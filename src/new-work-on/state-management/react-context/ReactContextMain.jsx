@@ -97,6 +97,7 @@ class ChangeNumbers extends React.Component {
                 <Counter>
                     <Dummy name="dummy1">
                         <InnerSmartComponent/>
+                        <InnerSmartComponent2/>
 
                     </Dummy>
 
@@ -149,7 +150,7 @@ const CounterContext = React.createContext({
 
 
 function Counter(props) {
-    const counter2 = useContext(CounterContext);
+    const contextValue = useContext(CounterContext);
     const countFunc = () => {
         console.log("countFUnc")
         setCounter(prevState => {
@@ -165,7 +166,7 @@ function Counter(props) {
     }
 
     const [counter, setCounter] = useState({
-        number: 1,
+        number: contextValue.number,
         count: countFunc
     });
 
@@ -224,6 +225,22 @@ function InnerSmartComponent() {
             }}
 
         </CounterContext.Consumer>
+    )
+}
+
+
+function InnerSmartComponent2() {
+    const value = useContext(CounterContext);
+    return (
+
+
+        <div>
+            <h4>I am smart component - I know to count too.. I USE USE CONTEXT INSTEAD OF CONSUMERS : {value.number}</h4>
+            <p>Click here for count</p>
+            <button onClick={value.count}>count</button>
+
+        </div>
+
     )
 }
 
