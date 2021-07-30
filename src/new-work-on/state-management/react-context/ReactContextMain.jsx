@@ -93,7 +93,7 @@ class ChangeNumbers extends React.Component {
                 </p>
                 <h4>**********************Example of how to pass function to nested in the tree
                     component************************</h4>
-
+                {/*Finishing*/}
                 <Counter>
                     <Dummy name="dummy1">
                         <InnerSmartComponent/>
