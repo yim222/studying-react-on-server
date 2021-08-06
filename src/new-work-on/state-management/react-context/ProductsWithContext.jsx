@@ -54,7 +54,7 @@ export class ProductsWithContext extends React.Component {
                 <p>Like in render props I want simply show two component - which get the same data from above.
                     list of products, and most expensive </p>
                 <h3>U can see that you cannot use context outside of render, and u need to wrap
-                    the function view with it's provider. (unlike class that You can do it from outside...) </h3>
+                    the function view with it's provider. (unlike class that You can do it from outside...) - Solution - you can use useContext hook</h3>
                 <p>U need to define it as state from this parent.</p>
                 <ProductDataContext.Provider value={this.data}>
                     <ProductsListCompContext/>

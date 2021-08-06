@@ -78,7 +78,7 @@ class ChangeNumbers extends React.Component {
                     <br/>
                     Render props is more flexible since You don't need to specially prepare the component to be
                     fit for context. The lack with it is that you still need to pass the props by the tree,
-                    and cannot access them from the "air". With component you do can do it, if it's under
+                    and cannot access them from the "air". With context you do can do it, if it's under
                     the umbrella.***
                 </p>
                 <p>The advantage is that you can affect the global value by state, or props (that comes from other
@@ -122,7 +122,7 @@ class ShowNum1 extends React.Component {
 class ShowNum2 extends React.Component {
     render() {
         return (
-            <p>Show num2 the num ={this.context + ""}  </p>
+            <p className={"small-comp"}>Show num2 the num ={this.context + ""}  </p>
         )
     }
 }
@@ -181,7 +181,7 @@ function Counter(props) {
 
                         {({number, count}) => {
                             return (
-                                <div>
+                                <div className={"small-comp"}>
                                     <h4>I am counter - this is the number : {number}</h4>
                                     <p>Click here for count</p>
                                     <button onClick={count}>count</button>
@@ -203,7 +203,7 @@ function Counter(props) {
 
 function Dummy(props) {
     return (
-        <div>
+        <div className={"small-comp"}>
             <h4>I am {props.name}, a dummy component. I don't know nothing. I just contain children. </h4>
             {props.children}
         </div>
@@ -216,7 +216,7 @@ function InnerSmartComponent() {
             {({number, count}) => {
                 return (
 
-                    <div>
+                    <div className={"small-comp"}>
                         <h4>I am smart component - I know to count too.. - this is the number : {number}</h4>
                         <p>Click here for count</p>
                         <button onClick={count}>count</button>
@@ -234,7 +234,7 @@ function InnerSmartComponent2() {
     return (
 
 
-        <div>
+        <div className={"small-comp"}>
             <h4>I am smart component - I know to count too.. I USE USE CONTEXT INSTEAD OF CONSUMERS : {value.number}</h4>
             <p>Click here for count</p>
             <button onClick={value.count}>count</button>
