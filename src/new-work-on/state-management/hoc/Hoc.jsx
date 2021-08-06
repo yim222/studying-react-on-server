@@ -24,26 +24,29 @@ export function HocMain(props) {
         </div>)
 }
 
-function CompA() {
+function CompA(props) {
     const [num, setNum] = useState(0);
     return (
         <div className={"small-comp"}>
             <h1>I am compA</h1>
             <p>num = {num}</p>
             <button onClick={() => setNum(num + 1)}>Click me !</button>
+            <button onClick={props.func}>Hoc function</button>
 
         </div>
     )
 }
 
 
-function CompB() {
+function CompB(props) {
     const [num, setNum] = useState(0);
     return (
         <div className={"small-comp"}>
             <h1>I am compB</h1>
             <p>num = {num}</p>
             <button onClick={() => setNum(num + 1)}>Click me !</button>
+            <button onClick={props.func}>Hoc function</button>
+
 
 
         </div>
