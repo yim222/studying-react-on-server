@@ -16,6 +16,7 @@ export function doAlert(WrappedComponent, func1, par) {
             // ... that takes care of the subscription...
             // DataSource.addChangeListener(this.handleChange);
             func1();
+            console.log("props name = " , this.props.name)
 
         }
 

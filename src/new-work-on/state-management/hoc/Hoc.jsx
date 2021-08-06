@@ -13,8 +13,8 @@ export function HocMain(props) {
             <p>Concretely, a higher-order component is a function that takes a component and returns a new
                 component.</p>
             <p>Mixin is another way to do it, but not it's not recommended </p>
-            <CompAWithSpecialFunc/>
-            <CompBWithSpecialFunc/>
+            <CompAWithSpecialFunc name = "Wrapped A"/>
+            <CompBWithSpecialFunc name = "CompBWithSpecialFunc"/>
 
             <NamesByHoc/>
             <CitiesByHoc/>
