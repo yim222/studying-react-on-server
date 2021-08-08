@@ -12,6 +12,10 @@ import {SuperMainView} from './main-router-and-view/superMainView.js';
 import {Main as TECH500} from './tech500-exercise/components/main.js'
  import {Example1} from "./new-work-on/react-hooks/sub-comps/DraftHooks";
 
+//for font-awesome will be global. see here https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react
+ import { library } from '@fortawesome/fontawesome-svg-core'
+ import { fab } from '@fortawesome/free-brands-svg-icons'
+ import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 //import './studyingExamples/componentsStudying1.js'
 
  /**
@@ -74,5 +78,8 @@ import {Main as TECH500} from './tech500-exercise/components/main.js'
     );
   }
 }
+//for font awesome will be available at the whole app.
+ library.add(fab, faCheckSquare, faCoffee)
 
-export default App;
+
+ export default App;
