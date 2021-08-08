@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "http://yim222.github.io/studying-react-on-server",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/react": "^17.0.1",
     "babel-cli": "^6.26.0",
