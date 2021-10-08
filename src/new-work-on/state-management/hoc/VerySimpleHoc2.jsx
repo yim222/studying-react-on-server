@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 // This function takes a component...
 export function doAlert(WrappedComponent, func1, par) {
     // ...and returns another component...
+
     return class extends React.Component {
         constructor(props) {
             super(props);
@@ -16,13 +17,14 @@ export function doAlert(WrappedComponent, func1, par) {
             // ... that takes care of the subscription...
             // DataSource.addChangeListener(this.handleChange);
             func1();
-            console.log("props name = " , this.props.name)
+            console.log("props name = ", this.props.name)
 
         }
 
         componentWillUnmount() {
             // DataSource.removeChangeListener(this.handleChange);
         }
+
         componentDidUpdate(prevProps, prevState, snapshot) {
             console.log("did update?")
             func1();
@@ -40,7 +42,7 @@ export function doAlert(WrappedComponent, func1, par) {
             // ... and renders the wrapped component with the fresh data!
             // Notice that we pass through any additional props
             // return <WrappedComponent data={this.state.data} {...this.props}/>;
-            return <WrappedComponent func = {this.handleChange}/>;
+            return <WrappedComponent func={this.handleChange}/>;
 
         }
     };
@@ -49,15 +51,21 @@ export function doAlert(WrappedComponent, func1, par) {
 
 export function getList(WrappedComponent, propName) {
     // ...and returns another component...
-    return function (){
+    return function () {
         const [data, setData] = useState([]);
 
 
-        useEffect(()=>{
+        useEffect(() => {
             setData(mockData[propName])
 
         });
-        return <WrappedComponent data = {data}/>;
+        return (
+            <div>
+                <h4>I am HOC view. </h4>
+                <WrappedComponent data={data}/>
+            </div>
+
+        );
 
 
     }
