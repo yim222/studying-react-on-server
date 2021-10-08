@@ -100,6 +100,8 @@ export function HocMain(props) {
                 Which will work by data name ("comment", "post" etc)</p>
             <p>Then make those two components work simply with the HOC, and show it on posts and on comments. </p>
 
+            <a>Exercise solution (Todo) </a>
+
 
             <br/>
             <br/>
