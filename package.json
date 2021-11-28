@@ -23,7 +23,8 @@
     "react-rss": "^2.0.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "s": "^1.0.0"
   },
   "scripts": {
     "start": "set PORT=3007 && react-scripts start",
