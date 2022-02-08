@@ -17,7 +17,7 @@ import {Main as TECH500} from './tech500-exercise/components/main.js'
  import { fab } from '@fortawesome/free-brands-svg-icons'
  import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 //import './studyingExamples/componentsStudying1.js'
-
+/* some changes for see how to review the PR's*/
  /**
   * Deploy on github:
   *
