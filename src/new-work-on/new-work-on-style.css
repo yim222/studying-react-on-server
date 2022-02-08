@@ -8,3 +8,22 @@ img{
   width: 40%;
   margin:5px 20%;
 }
+.light-list p {
+  border: 2px solid black;
+/***SOme annoying code*/
+}
+
+.dark-list p {
+  border: 2px solid pink;
+  color: white !important;
+  background: #282c34;
+
+}
+
+
+.cool-ui{
+  height: 1000px;
+}
+.big-font-awe{
+  font-size: 55px;
+}

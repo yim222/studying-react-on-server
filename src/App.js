@@ -12,16 +12,30 @@ import {SuperMainView} from './main-router-and-view/superMainView.js';
 import {Main as TECH500} from './tech500-exercise/components/main.js'
  import {Example1} from "./new-work-on/react-hooks/sub-comps/DraftHooks";
 
+//for font-awesome will be global. see here https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react
+ import { library } from '@fortawesome/fontawesome-svg-core'
+ import { fab } from '@fortawesome/free-brands-svg-icons'
+ import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 //import './studyingExamples/componentsStudying1.js'
-
-class App extends Component {
+/* some changes for see how to review the PR's*/
+ /**
+  * Deploy on github:
+  *
+  *https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
+  * run
+  * npm run deploy the it will deploy the current version (from you local) of the code.
+  *
+  * the url:
+  * https://yim222.github.io/studying-react-on-server/
+  */
+ class App extends Component {
   render() {
     return (
       <div className="App">
         <div>
           <header className="App-header">
               {/*<Example1/>*/}
-          <div className = "location-view">
+          <div className = "location-view " >
           <SuperMainView/>
               {/*<ReactRoute1/>*/}
               {/*<MainView/>*/}
@@ -64,5 +78,8 @@ class App extends Component {
     );
   }
 }
+//for font awesome will be available at the whole app.
+ library.add(fab, faCheckSquare, faCoffee)
 
-export default App;
+
+ export default App;

@@ -20,6 +20,10 @@ export function GeneralCompsHooks(){
     )
 }
 
+export class SimpleSquareClassic extends React.Component{
+
+}
+
 export function SimpleSquareHooks(props){
 
     const [color, setColor] = useState('red');

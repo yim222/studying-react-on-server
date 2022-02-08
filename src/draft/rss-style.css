@@ -1,0 +1,11 @@
+.news-feed{
+    left: 20px;
+    border: 2px solid black;
+    text-align: left;
+    position: relative;
+    padding: 20px;
+
+}
+.news-item{
+    border-bottom: chocolate 3px solid;
+}

@@ -34,7 +34,10 @@
 .App {
   text-align: center;
 }
-
+.app-body{
+  /*padding: 5%;*/
+  /*width: 95%;*/
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -113,4 +116,8 @@ li{
 .little-comment{
   font-size: 15px;
   color: blue;
+}
+.small-comp{
+  border: solid black 2px;
+  margin: 15px;
 }
