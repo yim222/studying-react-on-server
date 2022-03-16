@@ -16,7 +16,9 @@ import {ErrorHandlingMain} from "../new-work-on/error-handling";
 import {ReactHooksMain} from "../new-work-on/react-hooks/ReactHooksMain";
 import {StateManagementMain} from "../new-work-on/state-management/StateManagementMain";
 import {DraftMainView} from "../draft/draft-main-view";
-import {ProblemsAndSolutions} from "../locationApp/ProblemsAndSolutionsComponent";
+import {ProblemsAndSolutions} from "../new-work-on/problems-and-solutions/ProblemsAndSolutionsComponent";
+import {Tutorial1} from "../new-work-on/tutorial1/Tutorial1";
+import {MainCoolUI} from "../new-work-on/cool-ui-things/MainCoolUI";
 
 
 
@@ -90,7 +92,13 @@ const AppRouter = () => (
             <Link to="/state-management-react">State-management-advanced Techniques React</Link>
           </li>
           <li>
+            <Link to="/cool-ui">Cool UI - Styles & Animations</Link>
+          </li>
+          <li>
             <Link to="/problems-solutions">Problems and Solutions</Link>
+          </li>
+          <li>
+            <Link to="/tutorial1">Tutorial - 1</Link>
           </li>
           <li>
             <Link to="/TECH500">TECH500</Link>
@@ -121,7 +129,10 @@ const AppRouter = () => (
       <Route path="/error-handling" component={ErrorHandlingMain} />
       <Route path="/react-hooks" component={ReactHooksMain} />
       <Route path="/state-management-react" component={StateManagementMain} />
+      <Route path= "/cool-ui" component={MainCoolUI}/>
       <Route path="/problems-solutions" component={ProblemsAndSolutions} />
+      <Route path="/tutorial1" component={Tutorial1} />
+
 
       <Route path="/draft" component={DraftMainView} />
 

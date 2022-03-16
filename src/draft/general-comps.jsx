@@ -1,140 +1,205 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {RSSViewer} from "./RssViewer1";
+//
+//
 
-function httpGet(theUrl) {
-    let xmlhttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else {// code for IE6, IE5
-        // xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            return xmlhttp.responseText;
-        }
-    }
-    xmlhttp.open("GET", theUrl, false);
-    xmlhttp.send();
-}
+const cnnUrl = "http://rss.cnn.com/rss/edition.rss";
+const myProxy = "https://lingar-allow-cors.herokuapp.com/";
 
 export function RegularComp1() {
 
-    console.log("Hi Lingar ");
-    let data = null;
-    // let RSS_URL = "https://medium.com/feed/@alexroan/";//"https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU&tag=motor";
-    // const RSS_URL = `https://codepen.io/picks/feed/`;
-    // let RSS_URL = "http://www.ynet.co.il/Integration/StoryRss975.xml";
-    let RSS_URL = "http://social-events222.com/";
+    useEffect(()=>{
+        console.log("Regular component created... ");
+        argumentsAvailable("hii", 5 , 4);
+    },[]);
 
-    // fetch( RSS_URL).then((res)=> {
-    //     data = res;
-    //     // console.log("data = " + data.json());
-    //     console.log(data);
-    //
-    //
-    //
-    //
-    //
-    // });
-    //
-    // fetch(RSS_URL)
-    //     .then(response => response.text())
-    //     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-    //     .then(data => console.log(data));
+    let callSyncXhr = () =>{
+        console.log("Calling sync request ... ");
+        syncXhr();
 
-    // httpGet(RSS_URL);
+        console.log("Log after request");
 
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = () => {
-        if (request.readyState == 4 && request.status == 200) {
-            var myObj = JSON.parse(request.responseText);
-            for (var i = 0; i < 1; i++) {
-                console.log("item = " + myObj.items[i].title);
-                // this.setState({
-                //     recentBlogPost: {
-                //         name: myObj.items[i].title,
-                //         url: myObj.items[i].link
-                //     }
-                // });
-            }
-        }
-    }
-    request.open("GET", "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fblog.codecarrot.net%2Ffeed.xml&order_dir=desc&count=30", true);
-    request.send();
+    };
 
-    let request2 = new XMLHttpRequest();
+    let callAsyncXhr = () =>{
+        console.log("Calling Async  request ... ");
+        asyncXhr();
 
-    // request2.withCredentials = true;
-    console.log(request2)
-    // console.log(request2.responseText)
+        console.log("Log after request");
 
-    let cnn = "http://rss.cnn.com/rss/edition.rss";
-    let ynet = "http://www.ynet.co.il/Integration/StoryRss975.xml";
-    let proxy = "https://cors-anywhere.herokuapp.com/";
-    let fox = "http://feeds.foxnews.com/foxnews/national";
+    };
 
+    let handleDataFromComponent=()=>{
+        console.log("This is response ? ")
+        // console.log(this.response);
 
-
-    fetch(cnn, { mode: 'no-cors'}).then((res=>{//use less
-        console.log("lingarRes" , res)
-    })).catch((e)=>{
-        console.log("error - " , e)
-    })
-
-    fetch("https://cors-anywhere.herokuapp.com/" + cnn).then((res=>{//use less
-        console.log("lingarRes2" , res)
-    })).catch((e)=>{
-        console.log("error - " , e)
-    })
-
-
-    request2.onreadystatechange = () => {
-        if (request.readyState == 4 && request.status == 200) {
-            let myObj3 = JSON.parse(request2.responseText);
-            console.log("lingar res 3");
-            console.log(request2);
-            console.log("object??")
-            console.log(myObj3)
-            // for (var i = 0; i < 1; i ++) {
-            //     console.log("item = " + myObj.items[i].title);
-            //     // this.setState({
-            //     //     recentBlogPost: {
-            //     //         name: myObj.items[i].title,
-            //     //         url: myObj.items[i].link
-            //     //     }
-            //     // });
-            // }
-        }
 
     }
-
-    request2.open("GET", proxy + ynet);//fox/ynet/ cnn
-    request2.send();
-    console.log("kk?")
-    // let myObj4 = JSON.parse(request2.responseText);
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET",  cnn, true);
-
-//Send the proper header information along with the request
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//headers['access-control-allow-origin'] = '*';
-    xhr.setRequestHeader("access-control-allow-origin", "*");
-
-    xhr.onreadystatechange = function () { // Call a function when the state changes.
-        console.log("happen lingar?", xhr.responseText)
-        // console.log(xhr.getResponseHeader("Content-Type"));
-        // console.log(xhr.getAllResponseHeaders());
-
-
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            // Request finished. Do processing here.
-            console.log("happen?  good", xhr.responseText)
-        }
-    }
-    xhr.send();
 
 
     return (
         <div>
-            <p>I am regular functional comp</p>
+            Draft regular component1
+            <p>Try to run the browser with slow-connection</p>
+
+            <p>TO save it - async/sync example </p>
+            <button onClick={callSyncXhr}>Sync call (stopping the execution) </button>
+            <button onClick={callAsyncXhr}>Async call ( isn't stopping the execution) </button>
+
+            <p>The callback should be shoted from the success function, by applying.
+            See the inside code and comments.</p>
+            <button onClick={()=>{
+                console.log("clicked");
+                // loadFile("message.txt", handleData, "New message!\n\n");
+
+                getData(myProxy + cnnUrl, handleData, 12);
+            }}>Try request 1 </button>
+            <p>Now need to :
+            <br/>1- Send the data to the callback. <br/>
+                2- Make the data before - XML.
+                <br/>   3- Inside the callback parse the XML to object(first do it by your way)
+                <br/>    4- Then assign the object to the state
+                <br/>    5- Then represent it.
+                <br/>   6- Then learn about parsing xml, maybe there is a better way
+                <br/>Let's work on another file, due to over code here.
+
+            </p>
+            <h4>Get data .</h4>
+            <RSSViewer/>
+
+
         </div>
     )
 }
+
+//From here U need to define the callback with what params. Here by this - xhr availabe
+//And its response. -  I don't sure.
+function onSuccess(){
+    console.log("Request done well.");
+    //U must define this at the success for the call back will get the values
+    //Its functional programming. It's help U do reverse things.
+
+    //The apply() method calls a function with a given this value, and arguments provided as an array (or an array-like object).
+    console.log("this onSuccess = ", this);
+
+    // this.callback.apply(this, this.arguments);
+    let arr = ["lingar args"];
+
+    this.callback.apply(this,arr);
+
+
+}
+
+function onFailure(){
+
+    console.error("Request encountered error.")
+
+
+}
+
+function getData(url, callback /*, opt_arg1, opt_arg2, ... */) {
+    console.log("getData")
+    var xhr = new XMLHttpRequest();
+    //this callback is custom field, not predefined. U can call it whatever you want.
+    xhr.callback = callback;//will send the callback with data
+
+    // The call() method calls a function with a given this value and arguments provided individually.
+
+
+        xhr.arguments = Array.prototype.slice.call(arguments, 2);//U can add optional args to callback
+    xhr.onload = onSuccess;
+    xhr.onerror = onFailure;
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+//Testing if the arbitrary args are available to the function...
+function argumentsAvailable(par1){
+    console.log("this is the par - ", par1);
+    console.log("This are the arbitrary args  : ")
+    console.log(arguments);
+    console.log("See how U can see the args at the log. It doesn't know what is arbitrary and what not ")
+}
+
+function syncXhr(){
+    let req1 = new XMLHttpRequest();
+    req1.onload = function() {
+        if (req1.readyState === 4) {
+            if (req1.status === 200) {
+                console.log("request done successfully. response = " , req1.response);
+            } else {
+
+                console.error("error on the reqeust - " , req1.statusText);
+            }
+        }
+    };
+    req1.open("GET",myProxy + cnnUrl, false);
+    req1.send(null);
+
+}
+
+
+function asyncXhr(){
+    let req1 = new XMLHttpRequest();
+    req1.onload = function() {
+        if (req1.readyState === 4) {
+            if (req1.status === 200) {
+                console.log("request done successfully. response = " , req1.response);
+            } else {
+
+                console.error("error on the reqeust - " , req1.statusText);
+            }
+        }
+    };
+    req1.open("GET",myProxy + cnnUrl, true);//actually, async is true by default
+    req1.send(null);
+
+}
+
+function xhrSuccess() {
+    this.callback.apply(this, this.arguments);
+}
+
+function xhrError() {
+    console.error(this.statusText);
+}
+
+function loadFile(url, callback /*, opt_arg1, opt_arg2, ... */) {
+    var xhr = new XMLHttpRequest();
+    xhr.callback = callback;
+    xhr.arguments = Array.prototype.slice.call(arguments, 2);
+    xhr.onload = xhrSuccess;
+    xhr.onerror = xhrError;
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+
+loadFile("message.txt", showMessage, "New message!\n\n");
+
+
+
+function getData2(url, callback /*, opt_arg1, opt_arg2, ... */) {
+    var xhr = new XMLHttpRequest();
+    xhr.callback = callback;
+    xhr.arguments = Array.prototype.slice.call(arguments, 2);
+    xhr.onload = xhrSuccess;
+    xhr.onerror = xhrError;
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+function showMessage(message) {
+    console.log("Some callback")
+    console.log(message + this.responseText);
+}
+
+//this is the request
+function handleData(data){//Notice that the arguments is what U are pass as xhr.arguments.
+    // console.log("handle data, " , this.response)
+
+    // this.responseText;
+    console.log("Mock call back. Data = " , data);
+}
+
+// loadFile("message.txt", showMessage, "New message!\n\n");

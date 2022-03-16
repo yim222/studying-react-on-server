@@ -27,6 +27,8 @@ export class RenderPropsPoc extends React.Component {
 
                      **/}
                 </p>
+                <p><b>TOOD - U need to organize here, and explain what you are showing( in general you want to show that in the classic way you cannot put
+                two component one side to another, and get the same data) . </b></p>
                 <p>You can compare to previous bracnh how it's much easier to seperate to new other components by
                     renders props
                     vs the classic . </p>
@@ -96,6 +98,7 @@ class ProductsData extends React.Component {
         this.dataToArray();
         return (
             <div>
+                <p>From this DataComponent the content passed to its children by props.render(data)</p>
                 {/*products:*/}
                 {/*<p>book = {this.state.book}</p>*/}
                 {/*<p>bread = {this.state.bread}</p>*/}

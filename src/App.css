@@ -117,3 +117,7 @@ li{
   font-size: 15px;
   color: blue;
 }
+.small-comp{
+  border: solid black 2px;
+  margin: 15px;
+}
