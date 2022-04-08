@@ -1,9 +1,12 @@
 import React from "react";
 import {Wrapper2} from "./Wrapper2";
-
+//TODO - clean here what's not needed
 export class ProductsWithContext extends React.Component {
+
     constructor() {
         super();
+        // startTimer();
+
         this.interval = null;
         this.seconds = 3;
         this.state = {
@@ -18,6 +21,10 @@ export class ProductsWithContext extends React.Component {
     componentDidMount() {
         this.startTimer();
     }
+    componentWillUnmount() {
+        console.log("Shutting down interval: ");
+        clearInterval(this.interval);
+    }
 
     startTimer() {
         this.interval = setInterval(() => {
@@ -31,7 +38,7 @@ export class ProductsWithContext extends React.Component {
             }
 
 
-            , this.seconds * 3000);
+            , this.seconds * 1000);
     }
 
     getRandomInt(max) {
@@ -46,15 +53,20 @@ export class ProductsWithContext extends React.Component {
         }
 
     }
+
     render() {
         this.dataToArray();
         return (
             <div>
                 <h2>React Context Demonstartation. </h2>
-                <p>Like in render props I want simply show two component - which get the same data from above.
+                <p>Like in render props I want simply show two component - which
+                    get the same data from above.
                     list of products, and most expensive </p>
-                <h3>U can see that you cannot use context outside of render, and u need to wrap
-                    the function view with it's provider. (unlike class that You can do it from outside...) - Solution - you can use useContext hook</h3>
+                <h3>U can see that you cannot use context outside of render, and
+                    u need to wrap
+                    the function view with it's provider. (unlike class that You
+                    can do it from outside...) - Solution - you can use
+                    useContext hook</h3>
                 <p>U need to define it as state from this parent.</p>
                 <ProductDataContext.Provider value={this.data}>
                     <ProductsListCompContext/>
@@ -62,9 +74,6 @@ export class ProductsWithContext extends React.Component {
                     <Wrapper/>
                     <Wrapper2/>
                 </ProductDataContext.Provider>
-
-
-
 
 
             </div>
@@ -90,9 +99,9 @@ const productsToArray = (products) => {
 
 let productsData = productsToArray(products);
 export const ProductDataContext = React.createContext(productsData);
-startTimer();
 
 function startTimer() {
+
     let interval = setInterval(() => {
             products = {
                 book: getRandomInt(100),
@@ -119,7 +128,8 @@ export class ProductsListCompContext extends React.Component {
 
     render() {
         let view = this.context.map((item, idx) => {
-            return (<div key={idx}><span>{item.name}</span> <span>{item.price}</span></div>);
+            return (<div key={idx}><span>{item.name}</span>
+                <span>{item.price}</span></div>);
 
         });
 
@@ -163,15 +173,16 @@ class MostExpensiveCompContext extends React.Component {
 
 }
 
-function Wrapper(props){
-    return <div><OneItem idx = {2}/></div>
+function Wrapper(props) {
+    return <div><OneItem idx={2}/></div>
 }
 
-function OneItem(props){
-    return(
+function OneItem(props) {
+    return (
         <div>
             <ProductDataContext.Consumer>
-                {cValue=><p>item = {cValue[props.idx].name}, price = {cValue[props.idx].price}  </p>}
+                {cValue => <p>item = {cValue[props.idx].name}, price
+                    = {cValue[props.idx].price}  </p>}
             </ProductDataContext.Consumer>
         </div>
     )

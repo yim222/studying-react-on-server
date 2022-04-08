@@ -16,6 +16,8 @@ export function GeneralCompsHooks(){
             <ExUseContext/>
             <AdditionalHooks/>
 
+            <UpdatingInHooks/>
+
         </div>
     )
 }
@@ -78,7 +80,76 @@ export function SimpleSquareHooks(props){
 
     );
 }
+//https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+export function UpdatingInHooks(props){
+    const [number, setNumber] = useState(0);
+    //ref is reference to the actual value.
 
+
+    useEffect(()=>{
+        console.log("UpdatingInHooks initial");
+    },[]);
+
+
+//https://stackoverflow.com/questions/65785606/useref-to-store-previous-state-value - also read
+    return(
+        <>
+            <h2 href = "https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state"
+            target = "_blank">Updating Hook - previous state </h2>
+            <button onClick={()=>setNumber(number+1)}>Add prop num</button>
+            <UpdatedHook num = {number}></UpdatedHook>
+        </>
+    )
+
+
+}
+function UpdatedHook(props){
+    const propsPreviousValue = useRef();
+
+    useEffect(()=>{
+        console.log("UpdatedHook initial");
+    },[]);
+
+
+    useEffect(()=>{
+        console.log("updating prop...??? = ", props.num);
+    //it's showing the previous since it's not  - the right way is to make it on change...
+        propsPreviousValue.current = props.num;
+
+        //like unmount
+        return ()=>{
+            console.log("previous num = ",props.num);
+        }
+    }, [props.num]);
+
+    useEffect(()=>{
+        console.log("updating another prop...???")
+    }, [props.num2]);
+    const [num, setNum] = useState(0);
+    const prevNum = useCustomPrevious(num);
+    return(
+        <div>
+            <h2>Inner Updated Hooks</h2>
+            <button onClick={()=>{
+
+                    setNum(num+1);
+                }
+            }>Add to state num </button>
+            <p>State = {num}, previous = {prevNum} //here it's with custom hook. </p>
+            <p>current num props = {props.num}, previous = {propsPreviousValue.current}(by use ref and effect clean up ) </p>
+        </div>
+    )
+}
+
+function useCustomPrevious(dependency){//U cannot call it other name then useSomething or Component with capital
+    const ref = useRef();//ref not cause re render
+
+    useEffect(()=>{
+        ref.current = dependency;
+    });
+
+    return ref.current;
+}
 export function SimpleSquareHooks2(props){
     // console.log("SimpleSquareHooks2");
 
